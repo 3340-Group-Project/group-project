@@ -65,7 +65,7 @@ nav ul {
     border-radius: 0.5rem; /* add curves to corners */
     padding-left: 0.5rem; /* adds padding when user searches */
     /* add search icon in input field */
-    background-image: url("images/search-icon.webp");
+    background-image: url("../images/search-icon.webp");
     background-repeat: no-repeat;
     background-size: 1rem;
     background-position: right 0.75em center; /* x-axis: right (padding of 0.75em), y-axis: center*/
