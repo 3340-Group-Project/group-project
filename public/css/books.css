@@ -1,0 +1,121 @@
+/* For adjusting logo dimentions */
+.logo {
+    width: 50px;
+}
+
+body {
+    background-color: #d4ecf4;
+}
+
+/* Using flexbox for creating header layout */
+nav ul {
+    list-style: none; /* removes bullet points */
+    display: flex; /* activate flexbox layout */
+    justify-content: space-around; /* to distribute items evenly */
+    align-items: center;
+    background-color: #2a9ec7;
+    padding: 0.5rem;
+}
+
+/* Use grid areas to align the different sections in page */
+.container {
+    display: grid;
+    grid-auto-rows: minmax(250px, auto); /*will auto the row size with a mix size of 250px*/
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: ". a1 a1 a1 a1 a2"
+                         "b1 b1 b2 b2 b3 b3"
+                         "b4 b4 b5 b5 b6 b6";
+    gap: 10px 40px;
+    padding: 0 30px 30px 30px;
+}
+
+/* initialize area of grids */
+.a1 { grid-area: a1; }
+.a2 { grid-area: a2; 
+    display: flex;
+    align-items: center;
+}
+.b1 { grid-area: b1; }
+.b2 { grid-area: b2; }
+.b3 { grid-area: b3; }
+.b4 { grid-area: b4; }
+.b5 { grid-area: b5; }
+.b6 { grid-area: b6; }
+
+.a1 {
+    display: flex;
+    flex-direction: column; /* allows to stack children vertically */
+    align-items: center; /* centers items horizontally */
+    justify-content: center; /*aligns items vertically */
+}
+
+/* for search and filter bar */
+#search,
+#filter {
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #94cfe3;
+}
+
+
+/* search input bar */ 
+#search {
+    width: 80%;
+    border-radius: 0.5rem; /* add curves to corners */
+    padding-left: 0.5rem; /* adds padding when user searches */
+    /* add search icon in input field */
+    background-image: url("images/search-icon.webp");
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    background-position: right 0.75em center; /* x-axis: right (padding of 0.75em), y-axis: center*/
+}
+
+.search-label {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    color: #67727a;
+}
+
+/* search filter */ 
+#filter {
+    width: 70%;
+    border: none;
+    border-radius: 0.5rem; /* add curves to corners */
+    text-align: center;
+    color: #67727a;
+    font-weight: 700;
+}
+
+
+/* card layout for each book posting */
+.card {
+    display: flex; /* create flexbox for card */
+    gap: 1em;
+    padding: 1rem;
+    align-items: center;
+    background-color: #94cfe3;
+    border-radius: 0.5rem;
+    box-shadow: 10px 10px #2a9ec7;
+}
+
+.card-link {
+    text-decoration: none; /* removes underline in text*/
+    color: inherit; /* inherit the text color */
+    display: block; /* allow for block-level layout */
+}
+
+/* image will be in left side of card */
+.card img {
+    width: 60%;
+    object-fit: cover; /* ensures that image scales nicely */
+}
+
+/* content will be in right side of card */ 
+.card-content h2,
+.card-content p {
+    margin: 1rem 0;
+    text-align: left;
+    color: #67727a;
+}
