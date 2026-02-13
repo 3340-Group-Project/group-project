@@ -3,10 +3,12 @@
     <head>
         <title>Campus Swap</title>
         <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         
     </head>
     <body id="book">
-        <nav>
+        <nav id="nav-header">
             <ul>
                 <li>
                     <span class="home-link">
@@ -25,7 +27,6 @@
             </ul>
         </nav>
 
-        <!--add random squares that are clickable (to do different page)-->
         <main>
             <form method="GET" action="{{ route('books.index') }}" class="container" style="width: 100%;">
                 <div class="a1">
@@ -72,17 +73,15 @@
                     <p>No books found. Try adjusting your filters.</p>
                 </div>
             @else
+                <section class="books-grid">
                 @foreach($books as $book)
-                    @php
-                        $gridClass = 'b' . (($loop->index % 6) + 1);
-                    @endphp
-                    <div class="{{ $gridClass }}">
+                    <div>
                         <a href="{{ route('books.show', $book) }}" class="card-link">
                             <div class="card">
                                 @if($book->cover_image_path)
                                     <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Book Cover"/>
                                 @else
-                                    <img src="{{ asset('images/book1.webp') }}" alt="Book Cover"/>
+                                    <img src="{{ asset('images/book' . (($loop->index % 6) + 1) . '.webp') }}" alt="Book Cover"/>
                                 @endif
                                 <div class="card-content">
                                     <h2>{{ $book->title }}</h2>
@@ -93,6 +92,7 @@
                         </a>
                     </div>
                 @endforeach
+                </section>
             @endif
         
         </main>
