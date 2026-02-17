@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Make the current theme available to all Blade views.
+
         View::share('siteTheme', Setting::get('site_theme', 'default'));
+
     }
 }

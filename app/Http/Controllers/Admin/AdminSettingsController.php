@@ -11,7 +11,7 @@ class AdminSettingsController extends Controller
     public function editTheme()
     {
         $current = Setting::get('site_theme', 'default');
-
+        
         return view('admin.settings.theme', [
             'current' => $current,
             'themes' => ['default', 'dark', 'seasonal'],

@@ -34,6 +34,7 @@ class StatusController extends Controller
         // Theme setting reachable
         try {
             $theme = Setting::get('site_theme', 'default');
+
             $checks['theme_setting'] = ['ok' => true, 'message' => "Current: {$theme}"];
         } catch (\Throwable $e) {
             $checks['theme_setting'] = ['ok' => false, 'message' => $e->getMessage()];
