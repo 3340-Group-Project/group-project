@@ -1,0 +1,21 @@
+.login-form-card {
+    display: flex; 
+    gap: 1em;
+    padding: 1rem;
+    align-items: center;
+    background-color: #94cfe3;
+    border-radius: 0.5rem;
+    box-shadow: 10px 10px #2a9ec7;
+}
+
+#login-page {
+    display: flex;
+}
+
+input[type="email"], input[type="password"] {
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #94cfe3;
+    padding-left: 0.5rem; /* adds padding when user types in email or password */
+}

@@ -4,21 +4,31 @@
 @section('title', 'Login')
 
 @section('content')
-<h1>Welcome Back!</h1>
-<link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+<div id="login-page">
+    <div class="login-container">
+        <h1>Welcome Back!</h1>
 
-<form method="POST" action="{{ route('login.post') }}" class="card">
-    @csrf
-    <label>Email</label>
-    <input type="email" name="email" value="{{ old('email') }}" required>
+        <form method="POST" action="{{ route('login.post') }}" class="login-form-card">
+            @csrf
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
+            @error('email')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
 
-    <label>Password</label>
-    <input type="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            @error('password')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
 
-    <label class="row">
-        <input type="checkbox" name="remember" value="1"> Remember me
-    </label>
+            <label class="remember-me">
+                <input type="checkbox" name="remember" value="1"> Remember me
+            </label>
 
-    <button type="submit">Login</button>
-</form>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
 @endsection
