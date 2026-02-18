@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('navbar')
 
 @section('title', 'Sign Up')
 

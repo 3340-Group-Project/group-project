@@ -1,9 +1,11 @@
 @extends('layouts.app')
+@include('navbar')
 
 @section('title', 'Login')
 
 @section('content')
 <h1>Welcome Back!</h1>
+<link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
 
 <form method="POST" action="{{ route('login.post') }}" class="card">
     @csrf
