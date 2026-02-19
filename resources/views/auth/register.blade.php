@@ -3,7 +3,16 @@
 @section('title', 'Sign Up')
 
 @section('content')
+
+<header>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</header>
+
+
 <h1>Sign up to be a CampusShelf Member</h1>
+
 
 <form method="POST" action="{{ route('register.post') }}" class="card">
     @csrf
