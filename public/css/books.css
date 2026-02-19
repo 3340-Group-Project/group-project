@@ -1,94 +1,58 @@
-/* For adjusting logo dimentions */
-.logo {
-    width: 50px;
+/* CSS Variables */
+:root {
+    --header-color: #1A5A73;
+    --content-color: #102a43;
+    --background-light: #94CFE3;
+    --primary-blue: #2F87B7;
+    --white: #fff;
+    --text-gray: #67727a;
+    --border-radius: 0.5rem;
+    --border-radius-sm: 0.25rem;
+    --input-height: 2.5rem;
 }
 
-/* remove default margin and add background color */
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #d4ecf4;
+/* Typography */
+h1, h2, h3 {
+    color: var(--header-color);
+    margin-top: 0;
 }
 
-/* add padding below nav header */
-#nav-header {
-    padding-bottom: 3rem;
+h1 {
+    font-size: 2rem;
 }
 
-/* styling for links */ 
-.nav-link {
-    color: #fff;
+h2 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p, a {
+    color: var(--content-color);
+    margin: 0.75rem 0;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* aligns nav buttons */
-.nav-auth-buttons {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.nav-link:hover, .nav-link:focus .nav-btn:hover, .nav-btn:focus  {
-    background: #fff;
-    color: #2a9ec7;
-    box-shadow: 0 2px 8px rgba(42,158,199,0.15);
-    text-decoration: underline;
-}
-
-
-/* Navigation bar styles */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #2a9ec7;
-    padding: 0.5rem;
-    margin: 0;
-}
-
-/* adds margin around nav header */
-nav ul li {
-    margin: 0 0.5rem;
-}
-
-/* styling for welcome page link */
-.campus-shelf {
-    font-weight: bold;
-    margin-left: 0.5rem;
-    letter-spacing: 0.03em;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    height: 64px;
-    line-height: 1.1;
-}
-
-.campus-shelf .nav-link {
-    font-size: 2rem; /* font is bigger than other links */
-    font-weight: bold; 
-}
-
-/* center home link vertically */
-.home-link {
-    display: flex;
-    align-items: center;
-}
-
-/* default grid layout */
+/* Search/Filter Container */
 .container {
     display: grid;
     grid-auto-rows: auto;
     grid-template-columns: repeat(9, 1fr);
     grid-template-areas:
-    ". a1 a1 a1 a1 a1 a1 a1 ."
-    ". filters filters filters filters filters filters filters .";
+        ". a1 a1 a1 a1 a1 a1 a1 ."
+        ". filters filters filters filters filters filters filters .";
     column-gap: 3rem;
     row-gap: 2rem;
     padding: 2px;
@@ -96,17 +60,13 @@ nav ul li {
     margin: 0 auto;
 }
 
-/* grid for displaying n books */
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
+.a1 {
+    grid-area: a1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-
-/* filters grid */
 .filters {
     grid-area: filters;
     display: grid;
@@ -115,15 +75,7 @@ nav ul li {
     width: 100%;
 }
 
-/* center label and search bar respective to grid*/ 
-.a1 {
-    grid-area: a1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* for search and filter bar */
+/* Search and Filter Inputs */
 #search_bar,
 #book_format,
 #course,
@@ -131,74 +83,129 @@ nav ul li {
 #max_price, 
 #condition,
 #search_button {
-    height: 2.5rem;
-    border-radius: 0.5rem;
+    height: var(--input-height);
+    border-radius: var(--border-radius);
     border: none;
-    background-color: #94cfe3;
+    background-color: var(--background-light);
 }
 
-/* search input bar */ 
 #search_bar {
     width: 100%;
-    border-radius: 0.5rem; /* add curves to corners */
-    padding-left: 0.5rem; /* adds padding when user searches */
-    /* add search icon in input field */
+    padding-left: 0.5rem;
     background-image: url("../images/search-icon.webp");
     background-repeat: no-repeat;
     background-size: 1rem;
-    background-position: right 0.75em center; /* x-axis: right (padding of 0.75em), y-axis: center*/
+    background-position: right 0.75em center;
 }
 
 .search-label {
     font-weight: 700;
     margin-bottom: 0.5rem;
+    padding-top: 1rem;
     font-size: 2.5rem;
-    color: #67727a;
+    color: var(--header-color);
 }
 
-/*  book format filter */ 
-#book_format {
+#book_format, 
+#condition, 
+#search_button {
     width: 70%;
-    border: none;
-    border-radius: 0.5rem; /* add curves to corners */
     text-align: center;
-    color: #67727a;
+    color: var(--text-gray);
     font-weight: 700;
 }
 
-/* card layout for each book posting */
+/* Books Grid */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* Cards - Shared Styles */
+.card, 
+.single-card {
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+}
+
+.card img, 
+.single-card img {
+    border-radius: var(--border-radius-sm);
+}
+
+/* Book Listing Cards */
 .card {
-    display: flex; /* create flexbox for card */
+    display: flex;
     gap: 1em;
     padding: 1rem;
     align-items: center;
-    background-color: #94cfe3;
-    border-radius: 0.5rem;
     box-shadow: 10px 10px #2a9ec7;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-0.25rem);
 }
 
 .card-link {
-    text-decoration: none; /* removes underline in text*/
-    color: inherit; /* inherit the text color */
-    display: block; /* allow for block-level layout */
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
-/* image will be in left side of card */
 .card img {
     width: 60%;
-    object-fit: cover; /* ensures that image scales nicely */
+    object-fit: cover;
 }
 
-/* content will be in right side of card */ 
 .card-content h2,
 .card-content p {
     margin: 1rem 0;
     text-align: left;
-    color: #67727a;
 }
 
+/* Single Book Detail Page */
+.single-card {
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 56.25rem;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 18.75rem 1fr;
+    gap: 2rem;
+    align-items: start;
+}
 
-/* Mobile: stack everything vertically */
+.single-card img {
+    width: 100%;
+    height: auto;
+}
+
+.single-card a {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    margin-right: 0.5rem;
+}
+
+.single-card a:hover {
+    background-color: var(--background-light);
+    color: var(--content-color);
+}
+
+/* Back Link */
+a[href*="books.index"] {
+    display: inline-block;
+    margin: 1rem 2rem;
+    font-weight: 500;
+}
+
+/* Responsive - Mobile */
 @media (max-width: 899px) {
     .container {
         grid-template-columns: 1fr;
@@ -209,8 +216,7 @@ nav ul li {
     }
 
     .books-grid {
-        display: grid;
-         grid-template-columns: repeat(1, minmax(260px, 1fr));
+        grid-template-columns: repeat(1, minmax(260px, 1fr));
         gap: 1.5rem;
         margin: 1rem auto;
     }
@@ -219,13 +225,25 @@ nav ul li {
         flex-direction: column;
         align-items: flex-start;
     }
+    
     .card img {
         width: 100%;
         margin-bottom: 1rem;
     }
+    
+    .single-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+    
+    .single-card img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
 }
 
-/* Tablet: 2 columns for book cards */
+/* Responsive - Tablet */
 @media (min-width: 900px) and (max-width: 1100px) {
     .container {
         grid-template-columns: repeat(2, 1fr);
@@ -234,13 +252,15 @@ nav ul li {
             "filters filters";
         padding: 20px;
     }
+    
     .filters {
-        grid-template-columns: 1fr; /* stack filters vertically on mobile */
-        gap: 0.5rem;
+        grid-template-columns: 1fr;
     }
+    
     .card {
         flex-direction: row;
     }
+    
     .card img {
         width: 50%;
     }

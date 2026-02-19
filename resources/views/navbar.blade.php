@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Campus Swap</title>
-        <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}"/>
         
     </head>
     <body>
@@ -20,6 +20,8 @@
                 <li><a class="nav-link" href="{{ route('books.index') }}">Book Listings</a></li>
                 <li><a class="nav-link" href="/contact">Contact us</a></li>
 
+
+                <!-- if user is not logged in -->
                 @guest
                 <li class="nav-auth-buttons">
                     <a class="nav-link nav-btn" href="{{ route('login') }}">Sign In</a>
@@ -27,6 +29,7 @@
                 </li>
                 @endguest
 
+                <!-- if user is logged in -->
                 @auth
                 <a href="{{ route('books.my') }}">My Listings</a>
                 <a href="{{ route('requests.index') }}">Requests</a>
