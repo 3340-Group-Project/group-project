@@ -1,4 +1,4 @@
-@include('navbar')
+@extends('layouts.app')
 
 <!DOCTYPE html>
 <html>

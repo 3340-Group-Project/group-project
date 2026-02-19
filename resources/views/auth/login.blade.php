@@ -1,12 +1,11 @@
 @extends('layouts.app')
-@include('navbar')
 
 @section('title', 'Login')
 
 @section('content')
 <div id="login-page">
+    <h1>Welcome Back!</h1>
     <div class="login-container">
-        <h1>Welcome Back!</h1>
 
         <form method="POST" action="{{ route('login.post') }}" class="login-form-card">
             @csrf

@@ -12,10 +12,14 @@
     <link rel="stylesheet" href="/css/theme-{{ $siteTheme ?? 'default' }}.css">
 </head>
 <body>
-<header class="navbar">
+    @include('navbar')
+    
+<!-- <header class="navbar">
     <div class="container">
-        <a class="brand" href="{{ route('home') }}">CampusShelf</a>
-        <nav class="nav">
+         <a class="brand" href="{{ route('home') }}">CampusShelf</a> 
+
+        
+         <nav class="nav">
             <a href="{{ route('books.index') }}">Browse</a>
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('status') }}">Status</a>
@@ -35,8 +39,8 @@
                 <a href="{{ route('register') }}">Sign Up</a>
             @endauth
         </nav>
-    </div>
-</header>
+    </div> 
+</header> -->
 
 <main class="container">
     @if(session('status'))
