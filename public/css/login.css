@@ -47,9 +47,9 @@ main.container:has(#login-page), main.container:has(#signup-page) {
 .user-form-card {
     display: flex;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 2rem; 
-    margin: 1rem;
+    margin: 0 auto;
     flex-direction: column;
     align-items: stretch;
     background-color: #94cfe3;
@@ -80,10 +80,32 @@ input[type="email"], input[type="password"], #regname {
     margin: 0.5rem 0 0 0;
 }
 
-#loginbtn:hover, #signupbtn:hover {
+.userRegBtn:hover {
     background-color: #2a9ec7;
     color: white;
     border-color: #2a9ec7;
+}
+
+#signup-btn-container {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+#cancelBtn {
+    width: 100%;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    transition: 0.5s ease;
+}
+
+#cancelBtn:hover {
+    background-color: #ffffff;
+    color: #2a9ec7;
+    border-color: #ffffff;
 }
 
 .remember-me {

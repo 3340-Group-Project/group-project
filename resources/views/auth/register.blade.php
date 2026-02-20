@@ -41,7 +41,11 @@
                 <span class="error-text">{{ $message }}</span>
             @enderror
 
+        </div>
+
+        <div id="signup-btn-container">
             <button type="submit" class="userRegBtn">Sign Up</button>
+            <button type="reset" class="userRegBtn" id="cancelBtn">Cancel</button>
         </div>
 
         <div class="user-info-footer" id="signup-footer">
