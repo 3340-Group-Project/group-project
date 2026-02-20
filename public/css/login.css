@@ -1,4 +1,4 @@
-main.container:has(#login-page) {
+main.container:has(#login-page), main.container:has(#signup-page) {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -8,7 +8,7 @@ main.container:has(#login-page) {
     min-height: 70vh;
 }
 
-#login-page {
+#login-page, #signup-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,17 +17,18 @@ main.container:has(#login-page) {
 
 }
 
-#login-page h1 {
+#login-page h1, #signup-page h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: #1a5a73;
 }
-#login-page h3 {
+
+#login-page h3, #signup-page h3 {
     text-align: center;
     color: #1a5a73;
 }
 
-.login-footer {
+.user-info-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,31 +36,34 @@ main.container:has(#login-page) {
     width: 100%;
 }
 
-.login-footer span {
+.user-info-footer span {
     font-size: 0.77rem;
 }
 
-.login-buttons {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-items: space-between;
+#signup-footer {
+    justify-content:center;
 }
 
-.login-form-card {
+.user-form-card {
     display: flex;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 2rem; 
-    margin: 1rem;
+    margin: 0 auto;
     flex-direction: column;
     align-items: stretch;
     background-color: #94cfe3;
     border-radius: 0.5rem;
     /* box-shadow: 10px 10px #2a9ec7; */
+    transition: 0.5s ease, transform 0.3s ease; 
 }
 
-.login-form-card input[type="email"], .login-form-card input[type="password"] {
+.user-form-card:hover {
+    /* box-shadow: 12px 12px #2a9ec7; */
+    transform: scale(1.01);
+}
+
+input[type="email"], input[type="password"], #regname {
     margin: 0.5rem 0;
     height: 3rem;
     font-size: 1rem;
@@ -70,10 +74,38 @@ main.container:has(#login-page) {
     background-color: #dbe8ed;
 }
 
-.loginbtn {
+.userRegBtn {
     width: 100%;
     border: 2px solid #2a9ec7;
     margin: 0.5rem 0 0 0;
+}
+
+.userRegBtn:hover {
+    background-color: #2a9ec7;
+    color: white;
+    border-color: #2a9ec7;
+}
+
+#signup-btn-container {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+#cancelBtn {
+    width: 100%;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    transition: 0.5s ease;
+}
+
+#cancelBtn:hover {
+    background-color: #ffffff;
+    color: #2a9ec7;
+    border-color: #ffffff;
 }
 
 .remember-me {
