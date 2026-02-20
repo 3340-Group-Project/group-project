@@ -12,14 +12,19 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
+        // Public catalogue (only show active listings by default)
         $q = Book::query()->where('is_sold', false);
 
-        if ($search = $request->string('q')->toString()) {
+        // Support both parameter names:
+        // - "q" is the canonical name used by backend
+        // - "search_bar" is used by the styled UI that was merged
+        $search = trim((string) ($request->query('q', '') ?: $request->query('search_bar', '')));
+        if ($search !== '') {
             $q->where(function ($w) use ($search) {
                 $w->where('title', 'like', "%{$search}%")
-                  ->orWhere('course_code', 'like', "%{$search}%")
-                  ->orWhere('author', 'like', "%{$search}%")
-                  ->orWhere('isbn', 'like', "%{$search}%");
+                    ->orWhere('course_code', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('isbn', 'like', "%{$search}%");
             });
         }
 
@@ -27,10 +32,15 @@ class BookController extends Controller
             $q->where('course_code', 'like', "%{$course}%");
         }
 
-        if ($min = $request->integer('min_price')) {
+        // Note: integer() returns 0 for "0" which is falsy, so use explicit checks
+        $minRaw = $request->query('min_price');
+        if ($minRaw !== null && $minRaw !== '') {
+            $min = (int) $minRaw;
             $q->where('price_cents', '>=', $min * 100);
         }
-        if ($max = $request->integer('max_price')) {
+        $maxRaw = $request->query('max_price');
+        if ($maxRaw !== null && $maxRaw !== '') {
+            $max = (int) $maxRaw;
             $q->where('price_cents', '<=', $max * 100);
         }
 
@@ -38,7 +48,11 @@ class BookController extends Controller
             $q->where('condition', $cond);
         }
 
-        if ($format = $request->string('format')->toString()) {
+        // Support both parameter names:
+        // - "format" is canonical
+        // - "filter" was used by the styled UI select
+        $format = trim((string) ($request->query('format', '') ?: $request->query('filter', '')));
+        if ($format !== '') {
             $q->where('format', $format);
         }
 
