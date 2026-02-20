@@ -28,6 +28,7 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     color: #1a5a73;
 }
 
+/* this accomodates for both signup and login pages */
 .user-info-footer {
     display: flex;
     align-items: center;
