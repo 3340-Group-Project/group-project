@@ -6,28 +6,48 @@
 
 <header>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </header>
 
+<div id="signup-page">
 
-<h1>Sign up to be a CampusShelf Member</h1>
+    <h1>Sign Up</h1>
 
+    <h3>Create an account to get started!</h3>
 
-<form method="POST" action="{{ route('register.post') }}" class="card">
-    @csrf
-    <label>Name</label>
-    <input type="text" name="name" value="{{ old('name') }}" required>
+    <form method="POST" action="{{ route('register.post') }}" class="user-form-card" id="signup-card">
+        @csrf
 
-    <label>UWindsor Email</label>
-    <input type="email" name="email" value="{{ old('email') }}" placeholder="uwinID@uwindsor.ca" required>
+        <div class="signup-info">
+            <label for="regname">Name</label>
+            <input type="text" name="name" id="regname" value="{{ old('name') }}" required autofocus>
 
-    <label>Password</label>
-    <input type="password" name="password" required>
+            <label for="email">UWindsor Email</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="uwinID@uwindsor.ca" required>
+            @error('email')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
 
-    <label>Confirm Password</label>
-    <input type="password" name="password_confirmation" required>
+            <label>Password</label>
+            <input type="password" name="password" required>
 
-    <button type="submit">Sign Up</button>
-</form>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="password_confirmation" id="confirmPassword" required>
+
+            <span id="matchMessage"></span> 
+            <!-- JS will check if passwords match  -->
+
+            @error('password')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
+
+            <button type="submit" class="userRegBtn">Sign Up</button>
+        </div>
+
+        <div class="user-info-footer" id="signup-footer">
+            <span class="login-link">Already have an account? <a href="{{ route('login') }}">Log in</a></span>
+        </div>
+    </form>
+
+</div>
 @endsection
