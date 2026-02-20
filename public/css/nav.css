@@ -1,0 +1,75 @@
+/* For adjusting logo dimentions */
+.logo {
+    width: 50px;
+}
+
+/* add padding below nav header */
+#nav-header {
+    padding-bottom: 3rem;
+}
+
+/* styling for links */ 
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+/* aligns nav buttons */
+.nav-auth-buttons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover, .nav-link:focus .nav-btn:hover, .nav-btn:focus  {
+    background: #fff;
+    color: #2a9ec7;
+    box-shadow: 0 2px 8px rgba(42,158,199,0.15);
+    text-decoration: underline;
+}
+
+
+/* Navigation bar styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2a9ec7;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+/* adds margin around nav header */
+nav ul li {
+    margin: 0 0.5rem;
+}
+
+/* styling for welcome page link */
+.campus-shelf {
+    font-weight: bold;
+    margin-left: 0.5rem;
+    letter-spacing: 0.03em;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    height: 64px;
+    line-height: 1.1;
+}
+
+.campus-shelf .nav-link {
+    font-size: 2rem; /* font is bigger than other links */
+    font-weight: bold; 
+}
+
+/* center home link vertically */
+.home-link {
+    display: flex;
+    align-items: center;
+}

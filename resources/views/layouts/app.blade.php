@@ -10,39 +10,13 @@
 
     {{-- Theme CSS (admin can change siteTheme in DB setting) --}}
     <link rel="stylesheet" href="/css/theme-{{ $siteTheme ?? 'default' }}.css">
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    @yield('styles')
 </head>
-<body>
+<body @yield('body-attributes')>
     @include('navbar')
-    
-<!-- <header class="navbar">
-    <div class="container">
-         <a class="brand" href="{{ route('home') }}">CampusShelf</a> 
 
-        
-         <nav class="nav">
-            <a href="{{ route('books.index') }}">Browse</a>
-            <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('status') }}">Status</a>
-
-            @auth
-                <a href="{{ route('books.my') }}">My Listings</a>
-                <a href="{{ route('requests.index') }}">Requests</a>
-                @if(auth()->user()->is_admin)
-                    <a href="{{ route('admin.dashboard') }}">Admin</a>
-                @endif
-                <form action="{{ route('logout') }}" method="POST" style="display:inline">
-                    @csrf
-                    <button class="linklike" type="submit">Logout</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Sign Up</a>
-            @endauth
-        </nav>
-    </div> 
-</header> -->
-
-<main class="container">
     @if(session('status'))
         <div class="flash success">{{ session('status') }}</div>
     @endif
@@ -57,7 +31,6 @@
     @endif
 
     @yield('content')
-</main>
 
 <footer class="footer">
     <div class="container">
