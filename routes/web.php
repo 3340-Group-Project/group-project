@@ -14,9 +14,7 @@ use App\Http\Controllers\Admin\AdminSettingsController;
 Route::view('/about', 'static.about')->name('about');
 
 // Home -> catalogue
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::view('/', 'static.Homepage')->name('home');
 
 // Auth
 Route::middleware('guest')->group(function () {
