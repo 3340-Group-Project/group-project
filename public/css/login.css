@@ -1,3 +1,13 @@
+:root {
+    --teal:       #2a9ec7;
+    --teal-dark:  #1a5a73;
+    --teal-light: #93cfe2;
+    --yellow:     #ffce04;
+    --white:      #ffffff;
+    --text-dark:  #000000;
+    --text-muted: #4C5B66;
+}
+
 main.container:has(#login-page), main.container:has(#signup-page) {
     display: flex;
     flex-direction: column;
@@ -14,21 +24,24 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     align-items: center;
     justify-content: center;    
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
+/* headers */
 #login-page h1, #signup-page h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: #1a5a73;
+    color: var(--teal-dark);
 }
 
 #login-page h3, #signup-page h3 {
     text-align: center;
-    color: #1a5a73;
+    color: var(--teal-dark);
 }
 
-/* this accomodates for both signup and login pages */
+
+
 .user-info-footer {
     display: flex;
     align-items: center;
@@ -64,6 +77,18 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     transform: scale(1.01);
 }
 
+.userRegBtn {
+    width: 100%;
+    border: 2px solid var(--teal);
+    margin: 0.5rem 0 0 0;
+}
+
+.userRegBtn:hover {
+    background-color: var(--teal);
+    color: white;
+    border-color: var(--teal);
+}
+
 input[type="email"], input[type="password"], #regname {
     margin: 0.5rem 0;
     height: 3rem;
@@ -75,18 +100,7 @@ input[type="email"], input[type="password"], #regname {
     background-color: #dbe8ed;
 }
 
-.userRegBtn {
-    width: 100%;
-    border: 2px solid #2a9ec7;
-    margin: 0.5rem 0 0 0;
-}
-
-.userRegBtn:hover {
-    background-color: #2a9ec7;
-    color: white;
-    border-color: #2a9ec7;
-}
-
+/* for 2 buttons in signup footer */
 #signup-btn-container {
     display: flex;
     justify-content: center;
