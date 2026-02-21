@@ -12,6 +12,10 @@
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>
             <input type="text" id="search_bar" name="search_bar" value="{{ request('search_bar') }}" placeholder="Search for Books">
+            
+        </div>
+        <div class="searchSubmit">
+            <button type="submit" id="search_button" name="search_button">Search</button>
         </div>
         <div class="filters">
             <div class="a2">
@@ -24,15 +28,6 @@
                 </select>
             </div>
             <div class="a3">
-                <input type="text" id="course" name="course" value="{{ request('course') }}" placeholder="Course Code" style="max-width: 120px;">
-            </div>
-            <div class="a4">
-                <input type="number" id="min_price" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" step="1" min="0" style="max-width: 100px;">
-            </div>
-            <div class="a5">
-                <input type="number" id="max_price" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" step="1" min="0" style="max-width: 100px;">
-            </div>
-            <div class="a6">
                 <select id="condition" name="condition">
                     <option value="">Condition</option>
                     <option value="New" @selected(request('condition')==='New')>New</option>
@@ -42,9 +37,18 @@
                     <option value="Poor" @selected(request('condition')==='Poor')>Poor</option>
                 </select>
             </div>
-            <div class="a7">
-                <button type="submit" id="search_button" name="search_button">Search</button>
+            <div class="a4">
+                <input type="text" id="course" name="course" value="{{ request('course') }}" placeholder="Course Code" style="max-width: 120px;">
             </div>
+            <div class="a5">
+                <input type="number" id="min_price" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" step="1" min="0" style="max-width: 100px;">
+            </div>
+            <div class="a6">
+                <input type="number" id="max_price" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" step="1" min="0" style="max-width: 100px;">
+            </div>
+            <!-- <div class="a7">
+            
+            </div> -->
         </div>
     </form>
 
