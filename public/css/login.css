@@ -1,3 +1,13 @@
+:root {
+    --teal:       #2a9ec7;
+    --teal-dark:  #1a5a73;
+    --teal-light: #93cfe2;
+    --yellow:     #ffce04;
+    --white:      #ffffff;
+    --text-dark:  #000000;
+    --text-muted: #4C5B66;
+}
+
 main.container:has(#login-page), main.container:has(#signup-page) {
     display: flex;
     flex-direction: column;
@@ -14,19 +24,23 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     align-items: center;
     justify-content: center;    
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
+/* headers */
 #login-page h1, #signup-page h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: #1a5a73;
+    color: var(--teal-dark);
 }
 
 #login-page h3, #signup-page h3 {
     text-align: center;
-    color: #1a5a73;
+    color: var(--teal-dark);
 }
+
+
 
 .user-info-footer {
     display: flex;
@@ -63,6 +77,18 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     transform: scale(1.01);
 }
 
+.userRegBtn {
+    width: 100%;
+    border: 2px solid var(--teal);
+    margin: 0.5rem 0 0 0;
+}
+
+.userRegBtn:hover {
+    background-color: var(--teal);
+    color: white;
+    border-color: var(--teal);
+}
+
 input[type="email"], input[type="password"], #regname {
     margin: 0.5rem 0;
     height: 3rem;
@@ -74,18 +100,7 @@ input[type="email"], input[type="password"], #regname {
     background-color: #dbe8ed;
 }
 
-.userRegBtn {
-    width: 100%;
-    border: 2px solid #2a9ec7;
-    margin: 0.5rem 0 0 0;
-}
-
-.userRegBtn:hover {
-    background-color: #2a9ec7;
-    color: white;
-    border-color: #2a9ec7;
-}
-
+/* for 2 buttons in signup footer */
 #signup-btn-container {
     display: flex;
     justify-content: center;
@@ -120,4 +135,41 @@ input[type="email"], input[type="password"], #regname {
     width: auto;
     height: 1.25rem;
     margin: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    main.container:has(#login-page), 
+    main.container:has(#signup-page) {
+        padding: 1rem;
+        min-height: auto; 
+        margin-top: 2rem;
+    }
+
+    /* scale down the heading size */
+    #login-page h1, #signup-page h1 {
+        font-size: 2.2rem; 
+        text-align: center;
+    }
+
+    
+    .user-form-card {
+        padding: 1.5rem; 
+        width: 93%;
+        box-sizing: border-box;
+    }
+
+    /* stack buttons vertically if its cramped */
+    #signup-btn-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .user-info-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+
 }
