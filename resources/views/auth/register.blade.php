@@ -28,7 +28,7 @@
                 <span class="error-text">{{ $message }}</span>
             @enderror
 
-            <label>Password</label>
+            <label>Password (minimum 8 characters)</label>
             <input type="password" name="password" required>
 
             <label for="confirmPassword">Confirm Password</label>
