@@ -8,7 +8,7 @@
 
 @section('content')
 <main>
-    <form method="GET" action="{{ route('books.index') }}" class="container" style="width: 100%;">
+    <form method="GET" action="{{ route('books.index') }}" class="container">
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>
             <input type="text" id="search_bar" name="search_bar" value="{{ request('search_bar') }}" placeholder="Search for Books">
