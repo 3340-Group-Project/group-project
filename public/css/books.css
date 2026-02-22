@@ -329,10 +329,12 @@ a[href*="books.index"] {
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas:
             "a1 a1"
+            "searchSubmit searchSubmit"
             "filters filters";
-        padding: 15px;
+        padding: 1rem;
         max-width: 100%;
         overflow: hidden;
+        margin: 0 auto;
     }
     
     .filters {
