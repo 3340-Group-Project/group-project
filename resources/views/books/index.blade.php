@@ -46,9 +46,12 @@
             <div class="a6">
                 <input type="number" id="max_price" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" step="1" min="0" style="max-width: 100px;">
             </div>
-            <!-- <div class="a7">
-            
-            </div> -->
+            <!-- clear filters via query parameters (refreshes without filter parameters) -->
+            <div class="a7">
+                <a href="{{ route('books.index') }}" class="clear_filters">
+                    Clear Filters
+                </a>
+            </div>
         </div>
     </form>
 
