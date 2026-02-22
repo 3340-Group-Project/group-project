@@ -11,16 +11,18 @@
     <form method="GET" action="{{ route('books.index') }}" class="container" style="width: 100%;">
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>
-            <input type="text" id="search_bar" name="search_bar" value="{{ request('search_bar') }}" placeholder="Search for Books">
+            {{-- Use canonical query param name "q" so backend search works. (Backend also supports legacy "search_bar") --}}
+            <input type="text" id="search_bar" name="q" value="{{ request('q') ?? request('search_bar') }}" placeholder="Search for Books">
         </div>
         <div class="filters">
             <div class="a2">
-                <select id="book_format" name="filter">
+                {{-- Use canonical query param name "format" so backend filter works. (Backend also supports legacy "filter") --}}
+                <select id="book_format" name="format">
                     <option value="">Format</option>
-                    <option value="Paperback" @selected(request('filter')==='Paperback')>Paperback</option>
-                    <option value="Hardcover" @selected(request('filter')==='Hardcover')>Hardcover</option>
-                    <option value="Loose-leaf" @selected(request('filter')==='Loose-leaf')>Loose-leaf</option>
-                    <option value="eBook" @selected(request('filter')==='eBook')>eBook</option>
+                    <option value="Paperback" @selected((request('format') ?? request('filter'))==='Paperback')>Paperback</option>
+                    <option value="Hardcover" @selected((request('format') ?? request('filter'))==='Hardcover')>Hardcover</option>
+                    <option value="Loose-leaf" @selected((request('format') ?? request('filter'))==='Loose-leaf')>Loose-leaf</option>
+                    <option value="eBook" @selected((request('format') ?? request('filter'))==='eBook')>eBook</option>
                 </select>
             </div>
             <div class="a3">
