@@ -8,7 +8,7 @@
     --text-gray: #67727a;
     --border-radius: 0.5rem;
     --border-radius-sm: 0.25rem;
-    --input-height: 2.5rem;
+    --input-height: 2rem;
 }
 
 /* Typography */
@@ -51,13 +51,14 @@ a {
     grid-auto-rows: auto;
     grid-template-columns: repeat(9, 1fr);
     grid-template-areas:
-        ". a1 a1 a1 a1 a1 a1 a1 ."
+        ". a1 a1 a1 a1 a1 a1 searchSubmit ."
         ". filters filters filters filters filters filters filters .";
     column-gap: 3rem;
     row-gap: 2rem;
     padding: 2px;
     max-width: 1200px;
     margin: 0 auto;
+   
 }
 
 .a1 {
@@ -73,6 +74,14 @@ a {
     grid-template-columns: repeat(6, 1fr);
     gap: 0.5rem;
     width: 100%;
+    align-items: center;
+}
+
+.searchSubmit {
+    grid-area: searchSubmit;
+    display: flex;
+    align-items: flex-end;
+    justify-content: stretch;
 }
 
 /* Search and Filter Inputs */
@@ -84,9 +93,26 @@ a {
 #condition,
 #search_button {
     height: var(--input-height);
+    box-sizing: border-box;
     border-radius: var(--border-radius);
     border: none;
     background-color: var(--background-light);
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+#search_button {
+    background-color: var(--primary-blue); /* colour of search button is different so it stands out */
+    color: var(--white) !important; /* ensure text is white */
+    font-weight: 700;
+    width: 100%;
+}
+
+#search_button:hover {
+    opacity: 0.9;
 }
 
 #search_bar {
@@ -96,6 +122,7 @@ a {
     background-repeat: no-repeat;
     background-size: 1rem;
     background-position: right 0.75em center;
+    text-align: left; /* added text alignment for search bar */
 }
 
 .search-label {
@@ -107,13 +134,10 @@ a {
 }
 
 #book_format, 
-#condition, 
-#search_button {
-    width: 70%;
-    text-align: center;
-    color: var(--text-gray);
-    font-weight: 700;
-}
+#condition {
+    line-height: normal;
+    padding: 0 0.25rem;
+} 
 
 /* Books Grid */
 .books-grid {
@@ -206,34 +230,90 @@ a[href*="books.index"] {
 }
 
 /* Responsive - Mobile */
-@media (max-width: 899px) {
+@media screen and (max-width: 600px) {
     .container {
         grid-template-columns: 1fr;
         grid-template-areas:
             "a1"
+            "searchSubmit"
             "filters";
-        padding: 10px;
+        row-gap: 1rem;
+        margin: 0 auto;
+        max-width: 100%;
+
+    }
+
+    .a1 {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchSubmit {
+        justify-content: center;
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .filters {
+        display: flex;
+        flex-direction: column; /* stack everything in one column */
+        gap: 0.75rem;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.25rem;
+    }
+
+    #search_bar {
+        grid-column: span 2;
+        width: 100%;
+    }
+
+    #book_format, 
+    #condition, 
+    #min_price, 
+    #max_price, 
+    #course, 
+    #search_bar, 
+    #search_button {
+        width: 100% !important;
+    }
+
+    .search_label {
+        font-size: 1.4rem;
+        text-align: center;
+        width: 90%;
+        word-wrap: break-word;
     }
 
     .books-grid {
         grid-template-columns: repeat(1, minmax(260px, 1fr));
-        gap: 1.5rem;
+        gap: 2rem;
         margin: 1rem auto;
+        padding: 1rem;
     }
     
     .card {
         flex-direction: column;
         align-items: flex-start;
+        padding: 0;
+        overflow: hidden;
+        
     }
     
     .card img {
         width: 100%;
         margin-bottom: 1rem;
+        height: 200px; /* fixed height for consistency */
+        object-fit: cover;
+
     }
     
     .single-card {
         grid-template-columns: 1fr;
         padding: 1.5rem;
+        margin: 1rem;
+        gap: 1.5rem;
     }
     
     .single-card img {
@@ -244,19 +324,34 @@ a[href*="books.index"] {
 }
 
 /* Responsive - Tablet */
-@media (min-width: 900px) and (max-width: 1100px) {
+@media (min-width: 601px) and (max-width: 900px) {
     .container {
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas:
             "a1 a1"
+            "searchSubmit searchSubmit"
             "filters filters";
-        padding: 20px;
+        padding: 1rem;
+        max-width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
     }
     
     .filters {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    /* forcing inputs to be full width on smaller screens */
+    #search_bar, #book_format, 
+    #course, #min_price, #max_price, #condition, 
+    #search_button {
+        width: 100% !important;
     }
     
+    #search_bar {
+        grid-column: span 3; /* make search bar whole row on tablet */
+    }
     .card {
         flex-direction: row;
     }
@@ -267,5 +362,6 @@ a[href*="books.index"] {
 
     .books-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 }
