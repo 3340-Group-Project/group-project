@@ -1,10 +1,18 @@
 @extends('layouts.app')
 
 @section('title', 'My Listings')
+@section('body-attributes', 'id="book"')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+@endsection
 
 @section('content')
 <h1>My Listings</h1>
 <p><a class="button" href="{{ route('books.create') }}">+ Create Listing</a></p>
+
+
+<!-- todo: add the books.css styling and use cards from index.blade.php -->
 
 @if($books->count() === 0)
     <p>You have no listings yet.</p>

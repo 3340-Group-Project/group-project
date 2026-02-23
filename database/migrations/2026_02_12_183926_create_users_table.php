@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique(); /** added phone as second contact method */
             $table->string('password');
             $table->timestamps();
         });

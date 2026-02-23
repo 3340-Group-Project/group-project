@@ -28,6 +28,9 @@
                 <span class="error-text">{{ $message }}</span>
             @enderror
 
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="e.g. 123-456-7890">
+
             <label>Password</label>
             <input type="password" name="password" required>
 

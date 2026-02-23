@@ -1,4 +1,4 @@
-@extends('layouts.app')
+1@extends('layouts.app')
 @section('title', 'Book Listings')
 @section('body-attributes', 'id="book"')
 

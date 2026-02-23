@@ -35,11 +35,12 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 Route::middleware(['auth', 'not_disabled'])->group(function () {
     Route::get('/my/listings', [BookController::class, 'myListings'])->name('books.my');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::get('/books/{book}', [BookController::class, 'show'])->whereNumber('book')->name('books.show'); /** added book route */
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
-    Route::post('/books/{book}/sold', [BookController::class, 'markSold'])->name('books.sold');
-    Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    Route::post('/books/{book}/sold', [BookController::class, 'markSold'])->name('books.sold'); /* admin as well? */
+    Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy'); /* todo: figure out what this does */
 
     // Service requests (study notes / help tickets)
     Route::get('/requests', [ServiceRequestController::class, 'index'])->name('requests.index');

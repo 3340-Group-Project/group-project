@@ -89,7 +89,7 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     border-color: var(--teal);
 }
 
-input[type="email"], input[type="password"], #regname {
+input[type="email"], input[type="password"], input[type="tel"], #regname {
     margin: 0.5rem 0;
     height: 3rem;
     font-size: 1rem;

@@ -23,6 +23,7 @@
         <p><strong>Format:</strong> {{ $book->format }}</p>
 
         <h3>Contact</h3>
+        <!-- todo: change posting with user contact infro dynamcially -->
         <a href="mailto:example@gmail.com">Email</a>
         <a href="tel:+1234567890">Phone</a>
     </div>
