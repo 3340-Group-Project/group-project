@@ -8,18 +8,23 @@
 @endsection
 
 @section('content')
-<h1>My Listings</h1>
-<p><a class="button" href="{{ route('books.create') }}">+ Create Listing</a></p>
-
+<div class="a1">
+    <h1 class="listings-label">My Listings</h1><a class="button" href="{{ route('books.create') }}">+ Create Listing</a>
+</div>
 
 <!-- todo: add the books.css styling and use cards from index.blade.php -->
 
 @if($books->count() === 0)
     <p>You have no listings yet.</p>
 @else
-    <div class="cards">
+    <div class="books-grid">
         @foreach($books as $book)
             <div class="card">
+                @if($book->cover_image_path)
+                    <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="{{ $book->title }} cover"/>
+                @else
+                    <img src="{{ asset('images/book' . (($loop->index % 6) + 1) . '.webp') }}" alt="Default book cover"/>
+                @endif
                 <strong>{{ $book->title }}</strong> — ${{ $book->price_dollars }}
                 @if($book->is_sold) <span class="badge">Sold</span> @endif
                 <div class="row">

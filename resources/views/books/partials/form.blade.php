@@ -35,4 +35,9 @@ $val = fn($k, $default='') => old($k, $book?->{$k} ?? $default);
 <textarea name="description" placeholder="Write additional info about posting here" rows="5">{{ $val('description') }}</textarea>
 
 <label>Cover Image</label>
-<input type="file" name="cover_image" accept="image/*" required>
+@if($book?->cover_image_path)
+    <div>
+        <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Current cover image" style="max-width: 180px; height: auto; display: block; margin-bottom: 0.5rem;">
+    </div>
+@endif
+<input type="file" name="cover_image" accept="image/*" @required(!$book)>
