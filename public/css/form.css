@@ -1,3 +1,5 @@
+/* CSS for form-based styling */
+
 :root {
     --teal:       #2a9ec7;
     --teal-dark:  #1a5a73;
@@ -8,7 +10,7 @@
     --text-muted: #4C5B66;
 }
 
-main.container:has(#login-page), main.container:has(#signup-page) {
+main.container:has(#login-page), main.container:has(#signup-page), main.container:has(#create-listing-page), main.container:has(#edit-listing-page) {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -18,7 +20,7 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     min-height: 70vh;
 }
 
-#login-page, #signup-page {
+#login-page, #signup-page, #create-listing-page, #edit-listing-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,13 +31,13 @@ main.container:has(#login-page), main.container:has(#signup-page) {
 }
 
 /* headers */
-#login-page h1, #signup-page h1 {
+#login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--teal-dark);
 }
 
-#login-page h3, #signup-page h3 {
+#login-page h3, #signup-page h3, #create-listing-page h3, #edit-listing-page h3  {
     text-align: center;
     color: var(--teal-dark);
 }
@@ -89,7 +91,7 @@ main.container:has(#login-page), main.container:has(#signup-page) {
     border-color: var(--teal);
 }
 
-input[type="email"], input[type="password"], #regname {
+input[type="email"], input[type="password"], input[type="tel"], #regname {
     margin: 0.5rem 0;
     height: 3rem;
     font-size: 1rem;
@@ -147,7 +149,7 @@ input[type="email"], input[type="password"], #regname {
     }
 
     /* scale down the heading size */
-    #login-page h1, #signup-page h1 {
+    #login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1 {
         font-size: 2.2rem; 
         text-align: center;
     }

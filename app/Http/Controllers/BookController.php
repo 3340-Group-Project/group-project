@@ -49,6 +49,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+        $book->load('user');
         return view('books.show', compact('book'));
     }
 
@@ -135,7 +136,7 @@ class BookController extends Controller
             'isbn' => ['nullable', 'string', 'max:50'],
             'condition' => ['required', Rule::in(['New', 'Like New', 'Good', 'Fair', 'Poor'])],
             'format' => ['required', Rule::in(['Paperback', 'Hardcover', 'Loose-leaf', 'eBook'])],
-            'price' => ['required', 'numeric', 'min:0.01', 'max:10000'],
+            'price' => ['required', 'numeric', 'min:0.0', 'max:10000'],
             'description' => ['nullable', 'string', 'max:5000'],
             'cover_image' => ['nullable', 'image', 'max:4096'],
         ]);

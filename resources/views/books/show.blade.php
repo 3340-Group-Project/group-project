@@ -10,7 +10,11 @@
 <a href="{{ route('books.index') }}">&larr; Back</a>
 
 <div class="single-card">
-    <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Cover">
+    @if($book->cover_image_path)
+        <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Cover">
+    @else
+        <img src="{{ asset('images/book1.webp') }}" alt="Cover">
+    @endif
     
     <div>
         <h1>{{ $book->title }}</h1>
@@ -23,8 +27,12 @@
         <p><strong>Format:</strong> {{ $book->format }}</p>
 
         <h3>Contact</h3>
-        <a href="mailto:example@gmail.com">Email</a>
-        <a href="tel:+1234567890">Phone</a>
+        <a href="mailto:{{ $book->user->email }}">Email</a>
+
+        <!-- add if since phone is optional contact method -->
+        @if($book->user?->phone)
+            <a href="tel:{{ $book->user->phone }}">Phone</a>
+        @endif
     </div>
 </div>
 @endsection
