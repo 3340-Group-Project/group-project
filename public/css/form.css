@@ -1,0 +1,177 @@
+/* CSS for form-based styling */
+
+:root {
+    --teal:       #2a9ec7;
+    --teal-dark:  #1a5a73;
+    --teal-light: #93cfe2;
+    --yellow:     #ffce04;
+    --white:      #ffffff;
+    --text-dark:  #000000;
+    --text-muted: #4C5B66;
+}
+
+main.container:has(#login-page), main.container:has(#signup-page), main.container:has(#create-listing-page), main.container:has(#edit-listing-page) {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    grid-template-columns: none; /* disable the columns */
+    grid-template-areas: none;    /* disable the areas */
+    min-height: 70vh;
+}
+
+#login-page, #signup-page, #create-listing-page, #edit-listing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/* headers */
+#login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--teal-dark);
+}
+
+#login-page h3, #signup-page h3, #create-listing-page h3, #edit-listing-page h3  {
+    text-align: center;
+    color: var(--teal-dark);
+}
+
+
+
+.user-info-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.user-info-footer span {
+    font-size: 0.77rem;
+}
+
+#signup-footer {
+    justify-content:center;
+}
+
+.user-form-card {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem; 
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #94cfe3;
+    border-radius: 0.5rem;
+    /* box-shadow: 10px 10px #2a9ec7; */
+    transition: 0.5s ease, transform 0.3s ease; 
+}
+
+.user-form-card:hover {
+    /* box-shadow: 12px 12px #2a9ec7; */
+    transform: scale(1.01);
+}
+
+.userRegBtn {
+    width: 100%;
+    border: 2px solid var(--teal);
+    margin: 0.5rem 0 0 0;
+}
+
+.userRegBtn:hover {
+    background-color: var(--teal);
+    color: white;
+    border-color: var(--teal);
+}
+
+input[type="email"], input[type="password"], input[type="tel"], #regname {
+    margin: 0.5rem 0;
+    height: 3rem;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background-color: #dbe8ed;
+}
+
+/* for 2 buttons in signup footer */
+#signup-btn-container {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+#cancelBtn {
+    width: 100%;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    transition: 0.5s ease;
+}
+
+#cancelBtn:hover {
+    background-color: #ffffff;
+    color: #2a9ec7;
+    border-color: #ffffff;
+}
+
+.remember-me {
+    display: flex;
+    font-size: 0.85rem;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 0.5rem;
+}
+
+.remember-me input[type="checkbox"] {
+    width: auto;
+    height: 1.25rem;
+    margin: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    main.container:has(#login-page), 
+    main.container:has(#signup-page) {
+        padding: 1rem;
+        min-height: auto; 
+        margin-top: 2rem;
+    }
+
+    /* scale down the heading size */
+    #login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1 {
+        font-size: 2.2rem; 
+        text-align: center;
+    }
+
+    
+    .user-form-card {
+        padding: 1.5rem; 
+        width: 93%;
+        box-sizing: border-box;
+    }
+
+    /* stack buttons vertically if its cramped */
+    #signup-btn-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .user-info-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+
+}
