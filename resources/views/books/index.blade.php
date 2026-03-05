@@ -8,33 +8,26 @@
 
 @section('content')
 <main>
-    <form method="GET" action="{{ route('books.index') }}" class="container" style="width: 100%;">
+    <form method="GET" action="{{ route('books.index') }}" class="container">
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>
-            {{-- Use canonical query param name "q" so backend search works. (Backend also supports legacy "search_bar") --}}
-            <input type="text" id="search_bar" name="q" value="{{ request('q') ?? request('search_bar') }}" placeholder="Search for Books">
+            <input type="text" id="search_bar" name="search_bar" value="{{ request('search_bar') }}" placeholder="Search for Books">
+            
+        </div>
+        <div class="searchSubmit">
+            <button type="submit" id="search_button" name="search_button">Search</button>
         </div>
         <div class="filters">
             <div class="a2">
-                {{-- Use canonical query param name "format" so backend filter works. (Backend also supports legacy "filter") --}}
-                <select id="book_format" name="format">
+                <select id="book_format" name="filter">
                     <option value="">Format</option>
-                    <option value="Paperback" @selected((request('format') ?? request('filter'))==='Paperback')>Paperback</option>
-                    <option value="Hardcover" @selected((request('format') ?? request('filter'))==='Hardcover')>Hardcover</option>
-                    <option value="Loose-leaf" @selected((request('format') ?? request('filter'))==='Loose-leaf')>Loose-leaf</option>
-                    <option value="eBook" @selected((request('format') ?? request('filter'))==='eBook')>eBook</option>
+                    <option value="Paperback" @selected(request('filter')==='Paperback')>Paperback</option>
+                    <option value="Hardcover" @selected(request('filter')==='Hardcover')>Hardcover</option>
+                    <option value="Loose-leaf" @selected(request('filter')==='Loose-leaf')>Loose-leaf</option>
+                    <option value="eBook" @selected(request('filter')==='eBook')>eBook</option>
                 </select>
             </div>
             <div class="a3">
-                <input type="text" id="course" name="course" value="{{ request('course') }}" placeholder="Course Code" style="max-width: 120px;">
-            </div>
-            <div class="a4">
-                <input type="number" id="min_price" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" step="1" min="0" style="max-width: 100px;">
-            </div>
-            <div class="a5">
-                <input type="number" id="max_price" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" step="1" min="0" style="max-width: 100px;">
-            </div>
-            <div class="a6">
                 <select id="condition" name="condition">
                     <option value="">Condition</option>
                     <option value="New" @selected(request('condition')==='New')>New</option>
@@ -44,8 +37,20 @@
                     <option value="Poor" @selected(request('condition')==='Poor')>Poor</option>
                 </select>
             </div>
+            <div class="a4">
+                <input type="text" id="course" name="course" value="{{ request('course') }}" placeholder="Course Code" style="max-width: 120px;">
+            </div>
+            <div class="a5">
+                <input type="number" id="min_price" name="min_price" value="{{ request('min_price') }}" placeholder="Min Price" step="1" min="0" style="max-width: 100px;">
+            </div>
+            <div class="a6">
+                <input type="number" id="max_price" name="max_price" value="{{ request('max_price') }}" placeholder="Max Price" step="1" min="0" style="max-width: 100px;">
+            </div>
+            <!-- clear filters via query parameters (refreshes without filter parameters) -->
             <div class="a7">
-                <button type="submit" id="search_button" name="search_button">Search</button>
+                <a href="{{ route('books.index') }}" class="clear_filters">
+                    Clear Filters
+                </a>
             </div>
         </div>
     </form>

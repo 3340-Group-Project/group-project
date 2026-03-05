@@ -4,7 +4,7 @@
 
 @section('content')
 <header>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </header>
@@ -14,7 +14,7 @@
 
     <h3>Log in to continue</h3>
 
-        <form method="POST" action="{{ route('login.post') }}" class="login-form-card">
+        <form method="POST" action="{{ route('login.post') }}" class="user-form-card">
 
             @csrf
             
@@ -35,11 +35,11 @@
                     <input type="checkbox" name="remember" value="1">Remember Me</input>
                 </label>
 
-                <button type="submit" class="loginbtn">Login</button>
+                <button type="submit" class="userRegBtn">Login</button>
 
             </div>
 
-            <div class="login-footer">
+            <div class="user-info-footer">
                 <span class="signup-link"><a href="{{ route('register') }}">Sign Up</a></span>
                 <span class="fpsw"><a href="#">Forgot password?</a></span>
             </div>

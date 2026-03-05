@@ -4,26 +4,18 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\Setting;
+use App\Support\SiteSettings;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        // Make the current theme available to all Blade views.
-
-        View::share('siteTheme', Setting::get('site_theme', 'default'));
-
+        // Share theme globally; file-based so it works even before DB is finalized.
+        View::share('siteTheme', SiteSettings::getTheme('default'));
     }
 }

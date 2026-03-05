@@ -8,7 +8,7 @@
     padding-bottom: 3rem;
 }
 
-/* styling for links */ 
+/* styling for links */
 .nav-link {
     color: #fff;
     text-decoration: none;
@@ -33,7 +33,6 @@
     box-shadow: 0 2px 8px rgba(42,158,199,0.15);
     text-decoration: underline;
 }
-
 
 /* Navigation bar styles */
 nav ul {
@@ -65,11 +64,98 @@ nav ul li {
 
 .campus-shelf .nav-link {
     font-size: 2rem; /* font is bigger than other links */
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 /* center home link vertically */
 .home-link {
     display: flex;
     align-items: center;
+}
+
+
+/* hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+
+/* Responsiveness for mobile */
+@media (max-width: 600px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        background-color: #2a9ec7;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .hamburger-item {
+        order: 2;
+        margin: 0;
+    }
+
+    /* Move Campus Shelf to the right */
+    .brand-item {
+        order: 1;
+        margin-left: 0;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .campus-shelf {
+        height: 48px;
+    }
+
+    .campus-shelf .nav-link {
+        font-size: 1.4rem;
+    }
+
+    /* Hide all other nav items */
+    nav ul li:not(.hamburger-item):not(.brand-item) {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin: 0;
+        padding: 0.1rem 0.5rem;
+    }
+
+    /* When menu is open, show nav items  */
+    nav ul.open li:not(.hamburger-item):not(.brand-item) {
+        display: block;
+    }
+
+    .nav-auth-buttons {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
 }
