@@ -10,12 +10,10 @@
 @section('content')
 <div class="a1">
     <h1 class="listings-label">My Listings</h1><a class="button" href="{{ route('books.create') }}">+ Create Listing</a>
+    @if($books->count() === 0)
+    <p>You have no listings yet.</p>
 </div>
 
-<!-- todo: add the books.css styling and use cards from index.blade.php -->
-
-@if($books->count() === 0)
-    <p>You have no listings yet.</p>
 @else
     <div class="books-grid">
         @foreach($books as $book)
