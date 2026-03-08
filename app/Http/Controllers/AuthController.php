@@ -52,7 +52,7 @@ class AuthController extends Controller
             'phone' => ['nullable', 'string', 'max:25', Rule::unique('users', 'phone')],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
-            'email.regex' => 'You must register using a @uwindsor.ca email address.',
+            'email.regex' => 'You must register using an @uwindsor.ca email address.',
         ]);
 
         $user = User::create([

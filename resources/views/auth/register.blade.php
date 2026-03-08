@@ -2,12 +2,17 @@
 
 @section('title', 'Sign Up')
 
-@section('content')
-
-<header>
+@section('styles')
     <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('js/user-auth.js') }}" defer></script>
+@endpush
+
+@section('content')
+<header>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ asset('js/user-auth.js') }}"></script>
 </header>
 
 <div id="signup-page">
@@ -25,7 +30,6 @@
 
             <label for="email">UWindsor Email</label>
             <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="uwinID@uwindsor.ca" required>
-            <span id="email-error" class="error-text" hidden>Email must be a valid UWindsor address</span>
 
             @error('email')
                 <span class="error-text">{{ $message }}</span>
@@ -39,8 +43,6 @@
 
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" name="password_confirmation" id="confirmPassword" required>
-
-            <span id="match-message" class="error-text" hidden="true">Passwords do not match</span>
 
             @error('password')
                 <span class="error-text">{{ $message }}</span>

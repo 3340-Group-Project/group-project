@@ -2,11 +2,17 @@
 
 @section('title', 'Login')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('js/user-auth.js') }}" defer></script>
+@endpush
+
 @section('content')
 <header>
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ asset('js/user-auth.js') }}"></script>
 </header>
 
 <div id="login-page">
@@ -21,7 +27,6 @@
             <div class="login-info">
                 <label for="email">UWindsor Email Address</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
-                <span id="email-error" class="error-text" hidden="true">Email is incorrect</span>
 
                 @error('email')
                     <span class="error-text">{{ $message }}</span>
@@ -30,7 +35,7 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
 
-                <span id="password-error" class="error-text" hidden="true">Password is incorrect</span>
+
                 @error('password')
                     <span class="error-text">{{ $message }}</span>
                 @enderror

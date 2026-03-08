@@ -1,26 +1,41 @@
-//javascript for user login and signup forms
+// JavaScript for user authentication forms (login and registration)
+
 document.addEventListener('DOMContentLoaded', () => {
-  const login_form = document.getElementById('login-form');
-  if (!login_form) return;
+    const signupForm = document.getElementById('signup-form');
 
-  const signup_form = document.getElementById('signup-form');
-  if(!signup_form) return;
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirm = document.getElementById('confirmPassword');
 
-//things to validate for signup: password length, uwindsor email, password match, phone number format (optional)
-    signup_form.addEventListener('submit', (e) => {
-        const email = document.getElementById('email');
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirmPassword');
-        const emailError = document.getElementById('email-error');
-        const matchMessage = document.getElementById('match-message');
-    });
+            email.setCustomValidity('');
+            confirm.setCustomValidity('');
 
-//things to validate for login: email and password match (done server side, just need to display error message)
-    login_form.addEventListener('submit', (e) => {
-        const email = document.getElementById('email');
-        const password = document.getElementById('password');
-        const emailError = document.getElementById('email-error');
-        const passwordError = document.getElementById('password-error');
-    });
+            let hasError = false;
 
+            if (!email.value.toLowerCase().endsWith('@uwindsor.ca')) {
+                email.setCustomValidity('You must register using an @uwindsor.ca email address.');
+                hasError = true;
+            } 
+            
+            if (password.value !== confirm.value) {
+                confirm.setCustomValidity('The password field confirmation does not match.');
+                hasError = true;
+            }
+
+   
+            if (hasError) {
+                e.preventDefault(); 
+                e.stopPropagation(); 
+                
+                if (email.validationMessage) email.reportValidity();
+                else if (confirm.validationMessage) confirm.reportValidity();
+            }
+        });
+
+        signupForm.addEventListener('input', (e) => {
+            e.target.setCustomValidity('');
+        });
+    }
 });
