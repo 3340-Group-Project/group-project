@@ -5,7 +5,7 @@
 @section('content')
 
 <header>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </header>
 
@@ -28,7 +28,10 @@
                 <span class="error-text">{{ $message }}</span>
             @enderror
 
-            <label>Password (minimum 8 characters)</label>
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="e.g. 123-456-7890">
+
+            <label>Password</label>
             <input type="password" name="password" required>
 
             <label for="confirmPassword">Confirm Password</label>
