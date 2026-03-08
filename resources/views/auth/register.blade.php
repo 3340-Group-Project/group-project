@@ -38,7 +38,7 @@
             <label for="phone">Phone Number (Optional)</label>
             <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="e.g. 123-456-7890">
 
-            <label>Password</label>
+            <label>Password (must be at least 8 characters)</label>
             <input type="password" name="password" id="password" required>
 
             <label for="confirmPassword">Confirm Password</label>
