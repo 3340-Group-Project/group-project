@@ -6,7 +6,7 @@
 <header>
     <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="{{ asset('js/user-auth.js') }}"></script>
 </header>
 
 <div id="login-page">
@@ -14,19 +14,23 @@
 
     <h3>Log in to continue</h3>
 
-        <form method="POST" action="{{ route('login.post') }}" class="user-form-card">
+        <form method="POST" action="{{ route('login.post') }}" class="user-form-card" id="login-form">
 
             @csrf
             
             <div class="login-info">
                 <label for="email">UWindsor Email Address</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
+                <span id="email-error" class="error-text" hidden="true">Email is incorrect</span>
+
                 @error('email')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
+
+                <span id="password-error" class="error-text" hidden="true">Password is incorrect</span>
                 @error('password')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
