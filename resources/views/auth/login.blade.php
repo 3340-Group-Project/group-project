@@ -20,7 +20,7 @@
 
     <h3>Log in to continue</h3>
 
-        <form method="POST" action="{{ route('login.post') }}" class="login-form-card">
+        <form method="POST" action="{{ route('login.post') }}" class="user-form-card" id="login-form">
 
             @csrf
             

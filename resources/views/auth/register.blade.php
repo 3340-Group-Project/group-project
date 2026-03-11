@@ -19,20 +19,46 @@
 
     <h1>Sign Up</h1>
 
-<form method="POST" action="{{ route('register.post') }}" class="card">
-    @csrf
-    <label>Name</label>
-    <input type="text" name="name" value="{{ old('name') }}" required>
+    <h3>Create an account to get started!</h3>
 
-    <label>UWindsor Email</label>
-    <input type="email" name="email" value="{{ old('email') }}" placeholder="uwinID@uwindsor.ca" required>
+    <form method="POST" action="{{ route('register.post') }}" class="user-form-card" id="signup-form">
+        @csrf
 
-    <label>Password</label>
-    <input type="password" name="password" required>
+        <div class="signup-info">
+            <label for="regname">Name</label>
+            <input type="text" name="name" id="regname" value="{{ old('name') }}" required autofocus>
+
+            <label for="email">UWindsor Email</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="uwinID@uwindsor.ca" required>
+
+            @error('email')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
+
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="e.g. 123-456-7890">
+
+            <label>Password (must be at least 8 characters)</label>
+            <input type="password" name="password" id="password" required>
 
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" name="password_confirmation" id="confirmPassword" required>
 
-    <button type="submit">Sign Up</button>
-</form>
+            @error('password')
+                <span class="error-text">{{ $message }}</span>
+            @enderror
+
+        </div>
+
+        <div id="signup-btn-container">
+            <button type="submit" class="userRegBtn">Sign Up</button>
+            <button type="reset" class="userRegBtn" id="cancelBtn">Cancel</button>
+        </div>
+
+        <div class="user-info-footer" id="signup-footer">
+            <span class="login-link">Already have an account? <a href="{{ route('login') }}">Log in</a></span>
+        </div>
+    </form>
+
+</div>
 @endsection
