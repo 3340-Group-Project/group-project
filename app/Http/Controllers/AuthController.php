@@ -49,6 +49,7 @@ class AuthController extends Controller
                 // UWindsor email restriction:
                 'regex:/@uwindsor\.ca$/i',
             ],
+            'phone' => ['nullable', 'string', 'max:25', Rule::unique('users', 'phone')],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'email.regex' => 'You must register using a @uwindsor.ca email address.',
@@ -57,6 +58,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => strtolower($data['email']),
+            'phone' => filled($data['phone'] ?? null) ? trim($data['phone']) : null,
             'password' => Hash::make($data['password']),
         ]);
 

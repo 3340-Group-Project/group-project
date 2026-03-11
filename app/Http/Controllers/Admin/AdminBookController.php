@@ -10,6 +10,22 @@ class AdminBookController extends Controller
 {
     public function index(Request $request)
     {
+        $q = trim((string) $request->query('q', ''));
+        $status = (string) $request->query('status', 'all'); // all|active|sold
+
+        $books = Book::query()
+            ->when($q !== '', function ($query) use ($q) {
+                $query->where('title', 'like', "%{$q}%")
+                      ->orWhere('course_code', 'like', "%{$q}%")
+                      ->orWhere('author', 'like', "%{$q}%")
+                      ->orWhere('isbn', 'like', "%{$q}%");
+            })
+            ->when($status === 'active', fn($query) => $query->where('is_sold', false))
+            ->when($status === 'sold', fn($query) => $query->where('is_sold', true))
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
         $search = trim((string) $request->query('q', ''));
         $status = trim((string) $request->query('status', '')); // active | sold | all
 

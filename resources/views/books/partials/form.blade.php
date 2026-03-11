@@ -6,7 +6,7 @@ $val = fn($k, $default='') => old($k, $book?->{$k} ?? $default);
 <input name="title" value="{{ $val('title') }}" required>
 
 <label>Course Code</label>
-<input name="course_code" value="{{ $val('course_code') }}" placeholder="COMP 3340">
+<input name="course_code" value="{{ $val('course_code') }}" placeholder="e.g. COMP 3340" required>
 
 <label>Author</label>
 <input name="author" value="{{ $val('author') }}">
@@ -29,10 +29,15 @@ $val = fn($k, $default='') => old($k, $book?->{$k} ?? $default);
 </select>
 
 <label>Price (CAD)</label>
-<input type="number" name="price" value="{{ old('price', $book ? ($book->price_cents/100) : '') }}" step="0.01" min="0.01" required>
+<input type="number" name="price" value="{{ old('price', $book ? ($book->price_cents/100) : '') }}" step="0.01" min="0.0" required>
 
 <label>Description</label>
-<textarea name="description" rows="5">{{ $val('description') }}</textarea>
+<textarea name="description" placeholder="Write additional info about posting here" rows="5">{{ $val('description') }}</textarea>
 
 <label>Cover Image</label>
-<input type="file" name="cover_image" accept="image/*">
+@if($book?->cover_image_path)
+    <div>
+        <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Current cover image" style="max-width: 180px; height: auto; display: block; margin-bottom: 0.5rem;">
+    </div>
+@endif
+<input type="file" name="cover_image" accept="image/*" @required(!$book)>

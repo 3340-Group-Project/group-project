@@ -1,0 +1,9 @@
+# Backend notes (admin integration)
+
+This project supports admin access in 2 ways:
+
+1) DB column (preferred): users.is_admin = 1
+2) .env allow-list: ADMIN_EMAILS=email1@uwindsor.ca,email2@uwindsor.ca
+3) File allow-list: storage/app/site-settings.json (admin_emails array)
+
+Theme selection is stored in storage/app/site-settings.json so it works even before DB settings table exists.

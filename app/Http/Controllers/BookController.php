@@ -10,16 +10,16 @@ use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
-        // Public catalogue (only show active listings by default)
+        // 1. Initialize the query (only show active listings by default)
         $q = Book::query()->where('is_sold', false);
 
-        // Support both parameter names:
-        // - "q" is the canonical name used by backend
-        // - "search_bar" is used by the styled UI that was merged
-        $search = trim((string) ($request->query('q', '') ?: $request->query('search_bar', '')));
-        if ($search !== '') {
+        // 2. Global Search (Title, Course, Author, ISBN)
+        if ($search = $request->string('q')->toString()) {
             $q->where(function ($w) use ($search) {
                 $w->where('title', 'like', "%{$search}%")
                     ->orWhere('course_code', 'like', "%{$search}%")
@@ -28,34 +28,34 @@ class BookController extends Controller
             });
         }
 
+        // 3. Specific Course Filter
         if ($course = $request->string('course')->toString()) {
             $q->where('course_code', 'like', "%{$course}%");
         }
 
-        // Note: integer() returns 0 for "0" which is falsy, so use explicit checks
-        $minRaw = $request->query('min_price');
-        if ($minRaw !== null && $minRaw !== '') {
-            $min = (int) $minRaw;
-            $q->where('price_cents', '>=', $min * 100);
-        }
-        $maxRaw = $request->query('max_price');
-        if ($maxRaw !== null && $maxRaw !== '') {
-            $max = (int) $maxRaw;
-            $q->where('price_cents', '<=', $max * 100);
-        }
-
-        if ($cond = $request->string('condition')->toString()) {
-            $q->where('condition', $cond);
-        }
-
-        // Support both parameter names:
-        // - "format" is canonical
-        // - "filter" was used by the styled UI select
-        $format = trim((string) ($request->query('format', '') ?: $request->query('filter', '')));
+        // 4. Format/Filter Logic (Handles both 'format' and 'filter' params)
+        $format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
         if ($format !== '') {
             $q->where('format', $format);
         }
 
+        // 5. Condition Filter
+        if ($cond = $request->string('condition')->toString()) {
+            $q->where('condition', $cond);
+        }
+
+        // 6. Price Filtering (Converted to cents for DB comparison)
+        $minRaw = $request->query('min_price');
+        if ($minRaw !== null && $minRaw !== '') {
+            $q->where('price_cents', '>=', (int)$minRaw * 100);
+        }
+
+        $maxRaw = $request->query('max_price');
+        if ($maxRaw !== null && $maxRaw !== '') {
+            $q->where('price_cents', '<=', (int)$maxRaw * 100);
+        }
+
+        // 7. Execute Pagination
         $books = $q->latest()->paginate(12)->withQueryString();
 
         return view('books.index', compact('books'));
@@ -63,6 +63,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+        $book->load('user');
         return view('books.show', compact('book'));
     }
 
@@ -149,7 +150,7 @@ class BookController extends Controller
             'isbn' => ['nullable', 'string', 'max:50'],
             'condition' => ['required', Rule::in(['New', 'Like New', 'Good', 'Fair', 'Poor'])],
             'format' => ['required', Rule::in(['Paperback', 'Hardcover', 'Loose-leaf', 'eBook'])],
-            'price' => ['required', 'numeric', 'min:0.01', 'max:10000'],
+            'price' => ['required', 'numeric', 'min:0.0', 'max:10000'],
             'description' => ['nullable', 'string', 'max:5000'],
             'cover_image' => ['nullable', 'image', 'max:4096'],
         ]);

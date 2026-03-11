@@ -3,6 +3,7 @@
  * It saves edits (delete/toggle sold) to localStorage so you can see changes.
  */
 const PREVIEW_STORAGE_KEY = "campusShelfPreviewBooksV1";
+const WINDOW_NAME_KEY = "__CampusShelfPreviewBooksV1__";
 
 const DEFAULT_BOOKS = [
   {
@@ -97,23 +98,43 @@ const DEFAULT_BOOKS = [
   }
 ];
 
+/**
+ * IMPORTANT (file:// limitation):
+ * When opening HTML files directly (file://), browsers may NOT share localStorage between different files.
+ * We therefore also persist data in window.name, which is shared across navigations in the same tab.
+ */
 function loadBooks() {
+  // 1) Try localStorage
   try {
     const raw = localStorage.getItem(PREVIEW_STORAGE_KEY);
-    if (!raw) return DEFAULT_BOOKS.slice();
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return DEFAULT_BOOKS.slice();
-    return parsed;
-  } catch (e) {
-    return DEFAULT_BOOKS.slice();
-  }
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {}
+
+  // 2) Try window.name (shared across navigations in same tab, even for file://)
+  try {
+    if (window.name && window.name.startsWith(WINDOW_NAME_KEY)) {
+      const raw = window.name.substring(WINDOW_NAME_KEY.length);
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {}
+
+  // 3) Default
+  return DEFAULT_BOOKS.slice();
 }
 
 function saveBooks(books) {
-  localStorage.setItem(PREVIEW_STORAGE_KEY, JSON.stringify(books));
+  // Save to localStorage (works when served over http://)
+  try { localStorage.setItem(PREVIEW_STORAGE_KEY, JSON.stringify(books)); } catch (e) {}
+  // Also save to window.name so it works reliably when opened via file:// (same tab navigation)
+  try { window.name = WINDOW_NAME_KEY + JSON.stringify(books); } catch (e) {}
 }
 
 function resetBooks() {
-  localStorage.removeItem(PREVIEW_STORAGE_KEY);
+  try { localStorage.removeItem(PREVIEW_STORAGE_KEY); } catch (e) {}
+  try { window.name = ""; } catch (e) {}
   location.reload();
 }

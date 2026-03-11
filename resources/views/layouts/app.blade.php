@@ -37,5 +37,6 @@
         <small>© {{ date('Y') }} CampusShelf</small>
     </div>
 </footer>
+@stack('scripts')
 </body>
 </html>
