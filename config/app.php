@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    // add admin for it to register in .env file
+    'admin_emails' => env('ADMIN_EMAILS'),
+
 ];

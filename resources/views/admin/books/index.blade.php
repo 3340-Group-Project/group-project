@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Admin - Listings')
-
 @section('content')
-<h1>Listings</h1>
+<div style="max-width: 1100px; margin: 0 auto; padding: 16px;">
+  <h1>Admin - Book Listings</h1>
 
 @foreach($books as $b)
     <div class="card">

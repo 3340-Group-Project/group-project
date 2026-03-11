@@ -10,38 +10,52 @@ use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
+        // 1. Initialize the query (only show active listings by default)
         $q = Book::query()->where('is_sold', false);
 
+        // 2. Global Search (Title, Course, Author, ISBN)
         if ($search = $request->string('q')->toString()) {
             $q->where(function ($w) use ($search) {
                 $w->where('title', 'like', "%{$search}%")
-                  ->orWhere('course_code', 'like', "%{$search}%")
-                  ->orWhere('author', 'like', "%{$search}%")
-                  ->orWhere('isbn', 'like', "%{$search}%");
+                    ->orWhere('course_code', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('isbn', 'like', "%{$search}%");
             });
         }
 
+        // 3. Specific Course Filter
         if ($course = $request->string('course')->toString()) {
             $q->where('course_code', 'like', "%{$course}%");
         }
 
-        if ($min = $request->integer('min_price')) {
-            $q->where('price_cents', '>=', $min * 100);
-        }
-        if ($max = $request->integer('max_price')) {
-            $q->where('price_cents', '<=', $max * 100);
+        // 4. Format/Filter Logic (Handles both 'format' and 'filter' params)
+        $format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
+        if ($format !== '') {
+            $q->where('format', $format);
         }
 
+        // 5. Condition Filter
         if ($cond = $request->string('condition')->toString()) {
             $q->where('condition', $cond);
         }
 
-        if ($format = $request->string('format')->toString()) {
-            $q->where('format', $format);
+        // 6. Price Filtering (Converted to cents for DB comparison)
+        $minRaw = $request->query('min_price');
+        if ($minRaw !== null && $minRaw !== '') {
+            $q->where('price_cents', '>=', (int)$minRaw * 100);
         }
 
+        $maxRaw = $request->query('max_price');
+        if ($maxRaw !== null && $maxRaw !== '') {
+            $q->where('price_cents', '<=', (int)$maxRaw * 100);
+        }
+
+        // 7. Execute Pagination
         $books = $q->latest()->paginate(12)->withQueryString();
 
         return view('books.index', compact('books'));

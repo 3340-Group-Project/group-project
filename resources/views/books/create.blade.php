@@ -16,8 +16,6 @@
 
 <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data" class="user-form-card">
     @csrf
-
-    <!-- todo: figure out why form is not being properly styled -->
     @include('books.partials.form', ['book' => null])
     <button type="submit">Create</button>
 </form>
