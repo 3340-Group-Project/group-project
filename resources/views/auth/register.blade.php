@@ -56,7 +56,7 @@
         </div>
 
         <div class="user-info-footer" id="signup-footer">
-            <span class="login-link">Already have an account? <a href="{{ route('login') }}">Log in</a></span>
+            <span class="login-link">Already have an account? <a href="{{ route('login') }}">Sign in</a></span>
         </div>
     </form>
 
