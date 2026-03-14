@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Campus Swap</title>
-    <link rel="stylesheet" href="{{ asset('css/nav.css') }}"/>
-</head>
-<body>
 <nav class="nav">
     <ul id="nav-menu">
 
         <!-- Hamburger button (only visible on mobile) -->
         <li class="hamburger-item">
-            <button class="hamburger" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+            <button class="hamburger" type="button" onclick="document.getElementById('nav-menu').classList.toggle('open')">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -42,9 +35,22 @@
         @auth
         <li><a class="nav-link" href="{{ route('books.my') }}">My Listings</a></li>
         <li><a class="nav-link" href="{{ route('requests.index') }}">Requests</a></li>
-        @if(auth()->user()->is_admin)
-        <li><a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a></li>
+
+        {{-- Admin Portal (admins only) --}}
+        @if(auth()->user()->isAdmin())
+        <li class="nav-dropdown-wrap">
+            <details class="nav-dropdown">
+                <summary class="nav-link">Admin Portal</summary>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.books.index') }}">Admin Book Listings</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.users.index') }}">Admin User Listings</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.settings.theme') }}">Settings</a></li>
+                </ul>
+            </details>
+        </li>
         @endif
+
         <li>
             <form action="{{ route('logout') }}" method="POST" style="display:inline">
                 @csrf
@@ -55,5 +61,3 @@
 
     </ul>
 </nav>
-</body>
-</html>

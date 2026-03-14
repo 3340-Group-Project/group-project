@@ -20,7 +20,10 @@ class EnsureAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if (!$user) abort(403);
+        if (!$user) {
+            // Not logged in - let auth middleware handle redirects.
+            abort(403);
+        }
 
         if (isset($user->is_admin) && (bool) $user->is_admin) {
             return $next($request);
@@ -36,6 +39,14 @@ class EnsureAdmin
             return $next($request);
         }
 
-        abort(403);
+        // If a non-admin hits an admin route, redirect them to home (HTML)
+        // so they don't get stuck on a 403 page. For API/JSON requests, keep 403.
+        if ($request->expectsJson()) {
+            abort(403);
+        }
+
+        return redirect()
+            ->route('home')
+            ->with('status', 'You do not have access to the admin portal.');
     }
 }
