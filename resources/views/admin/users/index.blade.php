@@ -2,8 +2,13 @@
 
 @section('title','Admin - Users')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+@endsection
+
 @section('content')
-<h1>Users</h1>
+<div class="a1">
+<h1 class="listings-label">Users</h1>
 
 @foreach($users as $u)
     <div class="card">
@@ -24,6 +29,6 @@
         </div>
     </div>
 @endforeach
-
+</div>
 {{ $users->links() }}
 @endsection

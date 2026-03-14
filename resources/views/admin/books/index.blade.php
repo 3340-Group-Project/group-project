@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+@endsection
+
 @section('content')
 <div style="max-width: 1100px; margin: 0 auto; padding: 16px;">
-  <h1>Admin - Book Listings</h1>
+<div class="a1">  
+<h1 class="listings-label">Admin - Book Listings</h1>
+</div>
 
 @foreach($books as $b)
+<div class="books-grid">
     <div class="card">
         <strong>{{ $b->title }}</strong> — ${{ $b->price_dollars }}
         <div><small>Owner user_id: {{ $b->user_id }}</small></div>
@@ -24,6 +31,7 @@
         </div>
     </div>
 @endforeach
+</div>
 
 {{ $books->links() }}
 @endsection
