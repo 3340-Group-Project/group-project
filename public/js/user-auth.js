@@ -2,10 +2,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
 
     // allows to clean errors once user edits (to revalidate)
     ['input', 'change'].forEach(evt => {
-        signupForm.addEventListener(evt, e => {
+        signupForm?.addEventListener(evt, e => {
+        if (e.target?.setCustomValidity) {
+            e.target.setCustomValidity('');
+        }
+        });
+
+        loginForm?.addEventListener(evt, e => {
         if (e.target?.setCustomValidity) {
             e.target.setCustomValidity('');
         }
@@ -19,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone_number = document.getElementById('phone');
             const confirm = document.getElementById('confirmPassword');
 
-            // clear phone number validity initially
+            // clear validity initially
             email.setCustomValidity('');
             phone_number.setCustomValidity('');
             confirm.setCustomValidity('');
@@ -65,4 +72,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    if(loginForm) {
+        //basic client-side validation
+        loginForm.addEventListener('submit', function(e) {
+            const email_login = document.getElementById('email');
+            const password_login = document.getElementById('password');
+
+            email_login.setCustomValidity('');
+            password_login.setCustomValidity('');
+
+            let hasError1 = false;
+            let passwordError1 = false;
+
+            if (!email_login.value.toLowerCase().endsWith('@uwindsor.ca')) {
+                email_login.setCustomValidity('You must sign in using an @uwindsor.ca email address.');
+                hasError1 = true;
+            } 
+            
+            if(password_login.value.length < 8) {
+                password_login.setCustomValidity('Password must be at least 8 characters long.');
+                hasError1 = true;
+                passwordError1 = true;
+            }
+
+            
+            if (hasError1) {
+                e.preventDefault(); 
+                e.stopPropagation(); 
+                
+                if (email_login.validationMessage) email_login.reportValidity();
+                else if (password_login.validationMessage) password_login.reportValidity();
+                
+            }
+        });
+
+    }
+
 });
