@@ -27,12 +27,14 @@
         <p><strong>Format:</strong> {{ $book->format }}</p>
 
         <h3>Contact</h3>
+        <div class="admin-buttons">
         <a href="mailto:{{ $book->user->email }}">Email</a>
 
         <!-- add if since phone is optional contact method -->
         @if($book->user?->phone)
             <a href="tel:{{ $book->user->phone }}">Phone</a>
         @endif
+</div>
     </div>
 </div>
 @endsection

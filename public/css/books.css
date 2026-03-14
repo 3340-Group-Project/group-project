@@ -208,7 +208,7 @@ a {
     height: auto;
 }
 
-.single-card a {
+.admin-buttons a {
     display: inline-block;
     background-color: var(--primary-blue);
     color: var(--white);
@@ -217,7 +217,7 @@ a {
     margin-right: 0.5rem;
 }
 
-.single-card a:hover {
+.admin-buttons a:hover {
     background-color: var(--background-light);
     color: var(--content-color);
 }

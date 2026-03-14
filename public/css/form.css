@@ -10,7 +10,7 @@
     --text-muted: #4C5B66;
 }
 
-main.container:has(#login-page), main.container:has(#signup-page), main.container:has(#create-listing-page), main.container:has(#edit-listing-page), main.container:has(#create-request-page) {
+main.container:has(#login-page), main.container:has(#signup-page), main.container:has(#create-listing-page), main.container:has(#edit-listing-page), main.container:has(#create-request-page), main.container:has(#themes-page) {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -20,7 +20,7 @@ main.container:has(#login-page), main.container:has(#signup-page), main.containe
     min-height: 70vh;
 }
 
-#login-page, #signup-page, #create-listing-page, #edit-listing-page, #create-request-page {
+#login-page, #signup-page, #create-listing-page, #edit-listing-page, #create-request-page, #themes-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,13 +31,13 @@ main.container:has(#login-page), main.container:has(#signup-page), main.containe
 }
 
 /* headers */
-#login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1, #create-request-page h1 {
+#login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1, #create-request-page h1, #themes-page h1{
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--teal-dark);
 }
 
-#login-page h3, #signup-page h3, #create-listing-page h3, #edit-listing-page h3, #create-request-page h3  {
+#login-page h3, #signup-page h3, #create-listing-page h3, #edit-listing-page h3, #create-request-page h3, #themes-page h3  {
     text-align: center;
     color: var(--teal-dark);
 }
