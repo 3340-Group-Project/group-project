@@ -18,6 +18,8 @@ Route::view('/', 'static.Homepage')->name('home');
 
 Route::view('/contact', 'static.contactus')->name('contact');
 
+Route::view('/meet-team', 'static.meetteam')->name('meet-team');
+
 Route::post('/contact', function (Request $request) {
     $data = $request->validate([
         'name' => 'required|string|max:255',
