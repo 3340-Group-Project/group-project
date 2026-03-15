@@ -1,16 +1,12 @@
 /* For adjusting logo dimentions */
-.logo {
-    width: 50px;
-}
+.logo { width: 50px; }
 
 /* add padding below nav header */
-#nav-header {
-    padding-bottom: 3rem;
-}
+#nav-header { padding-bottom: 3rem; }
 
 /* styling for links */
 .nav-link {
-    color: #fff;
+    color: var(--text-nav, #ffffff);
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
@@ -27,10 +23,10 @@
     gap: 0.5rem;
 }
 
-.nav-link:hover, .nav-link:focus .nav-btn:hover, .nav-btn:focus  {
-    background: #fff;
-    color: #2a9ec7;
-    box-shadow: 0 2px 8px rgba(42,158,199,0.15);
+.nav-link:hover, .nav-link:focus, .nav-btn:hover, .nav-btn:focus {
+    background: var(--text-nav, #ffffff);
+    color: var(--accent-primary, #2a9ec7);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     text-decoration: underline;
 }
 
@@ -40,15 +36,13 @@ nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #2a9ec7;
+    background-color: var(--bg-nav, #2a9ec7); /* Fallback to original teal */
     padding: 0.5rem;
     margin: 0;
 }
 
 /* adds margin around nav header */
-nav ul li {
-    margin: 0 0.5rem;
-}
+nav ul li { margin: 0 0.5rem; }
 
 /* styling for welcome page link */
 .campus-shelf {
@@ -63,16 +57,12 @@ nav ul li {
 }
 
 .campus-shelf .nav-link {
-    font-size: 2rem; /* font is bigger than other links */
+    font-size: 2rem;
     font-weight: bold;
 }
 
 /* center home link vertically */
-.home-link {
-    display: flex;
-    align-items: center;
-}
-
+.home-link { display: flex; align-items: center; }
 
 /* hamburger */
 .hamburger {
@@ -89,23 +79,15 @@ nav ul li {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #fff;
+    background-color: var(--text-nav, #ffffff);
     border-radius: 3px;
     transition: all 0.3s;
 }
 
-
 /* Responsiveness for mobile */
 @media (max-width: 600px) {
-
-    .hamburger {
-        display: flex;
-    }
-
-    nav {
-        background-color: #2a9ec7;
-    }
-
+    .hamburger { display: flex; }
+    nav { background-color: var(--bg-nav, #2a9ec7); }
     nav ul {
         display: flex;
         flex-direction: row;
@@ -114,31 +96,11 @@ nav ul li {
         align-items: center;
         padding: 0.5rem;
     }
-
-    .hamburger-item {
-        order: 2;
-        margin: 0;
-    }
-
-    /* Move Campus Shelf to the right */
-    .brand-item {
-        order: 1;
-        margin-left: 0;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .campus-shelf {
-        height: 48px;
-    }
-
-    .campus-shelf .nav-link {
-        font-size: 1.4rem;
-    }
-
-    /* Hide all other nav items */
+    .hamburger-item { order: 2; margin: 0; }
+    .brand-item { order: 1; margin-left: 0; }
+    .logo { display: none; }
+    .campus-shelf { height: 48px; }
+    .campus-shelf .nav-link { font-size: 1.4rem; }
     nav ul li:not(.hamburger-item):not(.brand-item) {
         display: none;
         width: 100%;
@@ -146,12 +108,7 @@ nav ul li {
         margin: 0;
         padding: 0.1rem 0.5rem;
     }
-
-    /* When menu is open, show nav items  */
-    nav ul.open li:not(.hamburger-item):not(.brand-item) {
-        display: block;
-    }
-
+    nav ul.open li:not(.hamburger-item):not(.brand-item) { display: block; }
     .nav-auth-buttons {
         margin-left: 0;
         flex-direction: column;

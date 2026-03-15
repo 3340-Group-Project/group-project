@@ -1,3 +1,4 @@
+/* homepage.css */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -5,18 +6,14 @@
 }
 
 :root {
-    --teal:       #2a9ec7;
-    --teal-light: #93cfe2;
-    --yellow:     #ffce04;
-    --white:      #ffffff;
-    --text-dark:  #000000;
-    --text-muted: #4C5B66;
+    --yellow: #ffce04;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--white);
-    color: var(--text-dark);
+    /* Correct: Uses the variable first, falls back to hex if missing */
+    background-color: var(--hero-shape-bottom, #ffffff); 
+    color: var(--text-main, #000000);
 }
 
 a {
@@ -25,27 +22,35 @@ a {
 
 .hero {
     position: relative;
-    background-color: var(--teal);
+    background-color: var(--hero-bg, #2a9ec7);
     overflow: hidden;
 }
 
-/* Background Blue Streaks */
+.homepage-layout {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--hero-shape-bottom); 
+    color: var(--text-main);
+}
+
+/* Background Streaks */
 .shape-mid {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--teal-light);
+    background-color: var(--hero-shape-mid, #93cfe2);
     clip-path: polygon(0% 10%, 100% 55%, 100% 90%, 0% 65%);
     opacity: 0.7;
 }
 
+/* Update shape-bottom so it perfectly matches the new body color */
 .shape-bottom {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--white);
+    /* Correct: Uses the variable first, falls back to hex if missing */
+    background-color: var(--hero-shape-bottom, #ffffff);
     clip-path: polygon(0% 15%, 100% 85%, 100% 100%, 0% 100%);
 }
 
@@ -82,14 +87,14 @@ a {
     font-size: clamp(2.4rem, 5vw, 3.4rem);
     font-weight: 800;
     line-height: 1.15;
-    color: var(--text-dark);
+    color: var(--text-main, #000000);
     margin-bottom: 22px;
 }
 
 .hero-subtitle {
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--text-muted, #4C5B66);
     line-height: 1.6;
     margin-bottom: 36px;
 }
@@ -119,8 +124,8 @@ a {
 }
 
 .btn-solid {
-    background-color: var(--teal);
-    color: var(--white);
+    background-color: var(--hero-btn, #2a9ec7);
+    color: #ffffff;
 }
 
 /* Feature bullets */
@@ -139,17 +144,16 @@ a {
 .feature-icon {
     width: 42px;
     height: 42px;
-    color: var(--text-muted);
+    color: var(--text-muted, #4C5B66);
     flex-shrink: 0;
 }
 
 .feature span {
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--text-muted, #4C5B66);
     line-height: 1.5;
 }
-
 
 /* Cards */
 .cards-section {
@@ -164,40 +168,21 @@ a {
 .card {
     flex: 1 1 250px;
     height: 200px;
-    background-color: var(--teal);
+    background-color: var(--hero-card, #2a9ec7);
     border-radius: 16px;
     opacity: 0.75;
 }
 
-
 /* Tablet Responsiveness */
 @media (max-width: 900px) {
-    .yellow-circle {
-        width: 42vw;
-        height: 42vw;
-        right: -4%;
-        top: 3%;
-    }
-
-    .hero-content {
-        padding: 60px 32px 40px;
-    }
-
-    .cards-section {
-        padding: 32px 32px 48px;
-    }
+    .yellow-circle { width: 42vw; height: 42vw; right: -4%; top: 3%; }
+    .hero-content { padding: 60px 32px 40px; }
+    .cards-section { padding: 32px 32px 48px; }
 }
-
 
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
-
-    /* Hide desktop circle */
-    .yellow-circle {
-        display: none;
-    }
-
-    /* Show mobile circle*/
+    .yellow-circle { display: none; }
     .yellow-circle-mobile {
         display: block;
         width: 60vw;
@@ -208,59 +193,15 @@ a {
         background-color: var(--yellow);
         margin: 0 auto 32px;
     }
-
-    .hero-content {
-        padding: 40px 20px 32px;
-        text-align: center;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 28px;
-    }
-
-    .btn-solid {
-        background-color: var(--teal-light);
-        padding: 16px 48px;
-        font-size: 1.1rem;
-    }
-
-    .feature {
-        justify-content: center;
-    }
-
-    .cards-section {
-        flex-direction: column;
-        padding: 24px 16px 40px;
-    }
-
-    .card {
-        width: 100%;
-        height: 160px;
-    }
-
-    .shape-mid {
-        clip-path: polygon(0% 10%, 100% 17%, 100% 90%, 0% 65%);
-    }
-
-    .shape-bottom {
-        clip-path: polygon(0% 12%, 100% 25%, 100% 100%, 0% 100%);
-    }
-
-    .hero-buttons {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 0px;
-    }
-
-    .hero-buttons .btn {
-        width: auto;
-        padding: 12px 24px;
-    }
-
-    .hero-features {
-        display: none;
-    }
+    .hero-content { padding: 40px 20px 32px; text-align: center; }
+    .hero-buttons { flex-direction: column; align-items: center; margin-bottom: 28px; }
+    .btn-solid { background-color: var(--hero-shape-mid, #93cfe2); padding: 16px 48px; font-size: 1.1rem; }
+    .feature { justify-content: center; }
+    .cards-section { flex-direction: column; padding: 24px 16px 40px; }
+    .card { width: 100%; height: 160px; }
+    .shape-mid { clip-path: polygon(0% 10%, 100% 17%, 100% 90%, 0% 65%); }
+    .shape-bottom { clip-path: polygon(0% 12%, 100% 25%, 100% 100%, 0% 100%); }
+    .hero-buttons { flex-direction: row; justify-content: center; flex-wrap: wrap; margin-bottom: 0px; }
+    .hero-buttons .btn { width: auto; padding: 12px 24px; }
+    .hero-features { display: none; }
 }
