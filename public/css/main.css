@@ -1,6 +1,6 @@
-/* remove default margin and add background color */
+/* remove default margin and add fallback background color */
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #d4ecf4;
+    background-color: var(--bg-custom-body, #d4ecf4); /* sets variable from themes*/
 }

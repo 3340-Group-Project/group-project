@@ -19,12 +19,13 @@
         </div>
         <div class="filters">
             <div class="a2">
-                <select id="book_format" name="filter">
+                {{-- Use canonical query param name "format" so backend filter works. (Backend also supports legacy "filter") --}}
+                <select id="book_format" name="format">
                     <option value="">Format</option>
-                    <option value="Paperback" @selected(request('filter')==='Paperback')>Paperback</option>
-                    <option value="Hardcover" @selected(request('filter')==='Hardcover')>Hardcover</option>
-                    <option value="Loose-leaf" @selected(request('filter')==='Loose-leaf')>Loose-leaf</option>
-                    <option value="eBook" @selected(request('filter')==='eBook')>eBook</option>
+                    <option value="Paperback" @selected((request('format') ?? request('filter'))==='Paperback')>Paperback</option>
+                    <option value="Hardcover" @selected((request('format') ?? request('filter'))==='Hardcover')>Hardcover</option>
+                    <option value="Loose-leaf" @selected((request('format') ?? request('filter'))==='Loose-leaf')>Loose-leaf</option>
+                    <option value="eBook" @selected((request('format') ?? request('filter'))==='eBook')>eBook</option>
                 </select>
             </div>
             <div class="a3">

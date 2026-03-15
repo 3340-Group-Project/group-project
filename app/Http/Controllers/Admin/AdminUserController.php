@@ -4,33 +4,59 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\SiteSettings;
 use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::query()->latest()->paginate(20);
+        $q = trim((string) $request->query('q', ''));
+        $users = User::query()
+            ->when($q !== '', function ($query) use ($q) {
+                $query->where('name', 'like', "%{$q}%")
+                      ->orWhere('email', 'like', "%{$q}%");
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
         return view('admin.users.index', compact('users'));
     }
 
     public function toggleDisabled(User $user)
     {
-        if ($user->is_admin) {
-            return back()->withErrors(['user' => 'Cannot disable an admin account.']);
+        try {
+            if (isset($user->is_admin) && (bool)$user->is_admin) {
+                return back()->withErrors(['user' => 'Cannot disable an admin account.']);
+            }
+
+            if (isset($user->is_disabled)) {
+                $user->is_disabled = !(bool)$user->is_disabled;
+                $user->save();
+                return back()->with('status', 'User updated.');
+            }
+        } catch (\Throwable $e) {
+            // fall back
         }
 
-        $user->is_disabled = !$user->is_disabled;
-        $user->save();
-
-        return back()->with('status', 'User updated.');
+        SiteSettings::toggleDisabledEmail((string)$user->email);
+        return back()->with('status', 'User updated (file-based list).');
     }
 
     public function toggleAdmin(User $user)
     {
-        $user->is_admin = !$user->is_admin;
-        $user->save();
+        try {
+            if (isset($user->is_admin)) {
+                $user->is_admin = !(bool)$user->is_admin;
+                $user->save();
+                return back()->with('status', 'User updated.');
+            }
+        } catch (\Throwable $e) {
+            // fall back
+        }
 
-        return back()->with('status', 'User updated.');
+        SiteSettings::toggleAdminEmail((string)$user->email);
+        return back()->with('status', 'User updated (file-based list).');
     }
 }

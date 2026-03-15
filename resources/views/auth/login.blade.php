@@ -2,11 +2,17 @@
 
 @section('title', 'Login')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('js/user-auth.js') }}" defer></script>
+@endpush
+
 @section('content')
 <header>
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </header>
 
 <div id="login-page">
@@ -14,19 +20,22 @@
 
     <h3>Log in to continue</h3>
 
-        <form method="POST" action="{{ route('login.post') }}" class="user-form-card">
+        <form method="POST" action="{{ route('login.post') }}" class="user-form-card" id="login-form">
 
             @csrf
             
             <div class="login-info">
                 <label for="email">UWindsor Email Address</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
+
                 @error('email')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
+
+
                 @error('password')
                     <span class="error-text">{{ $message }}</span>
                 @enderror

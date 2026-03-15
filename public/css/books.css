@@ -1,49 +1,18 @@
-/* CSS Variables */
+/* CSS Variables for Sizes (Colors removed, relying on themes.css) */
 :root {
-    --header-color: #1A5A73;
-    --content-color: #102a43;
-    --background-light: #94CFE3;
-    --primary-blue: #2F87B7;
-    --white: #fff;
-    --text-gray: #67727a;
     --border-radius: 0.5rem;
     --border-radius-sm: 0.25rem;
     --input-height: 2rem;
 }
 
 /* Typography */
-h1, h2, h3 {
-    color: var(--header-color);
-    margin-top: 0;
-}
-
-h1 {
-    font-size: 2rem;
-}
-
-h2 {
-    font-size: 1.25rem;
-    margin: 0.5rem 0;
-}
-
-h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-p, a {
-    color: var(--content-color);
-    margin: 0.75rem 0;
-}
-
-p {
-    line-height: 1.6;
-}
-
-a {
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
+h1, h2, h3 { color: var(--accent-primary); margin-top: 0; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.25rem; margin: 0.5rem 0; }
+h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; }
+p, a { color: var(--text-main); margin: 0.75rem 0; }
+p { line-height: 1.6; }
+a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
 
 /* Search/Filter Container */
 .container {
@@ -58,62 +27,34 @@ a {
     padding: 2px;
     max-width: 1200px;
     margin: 0 auto;
-   
 }
 
-.a1 {
-    grid-area: a1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.filters {
-    grid-area: filters;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.5rem;
-    width: 100%;
-    align-items: center;
-}
-
-.searchSubmit {
-    grid-area: searchSubmit;
-    display: flex;
-    align-items: flex-end;
-    justify-content: stretch;
-}
+.a1 { grid-area: a1; display: flex; flex-direction: column; align-items: center; }
+.filters { grid-area: filters; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; width: 100%; align-items: center; }
+.searchSubmit { grid-area: searchSubmit; display: flex; align-items: flex-end; justify-content: stretch; }
 
 /* Search and Filter Inputs */
-#search_bar,
-#book_format,
-#course,
-#min_price,
-#max_price, 
-#condition,
-#search_button {
+#search_bar, #book_format, #course, #min_price, #max_price, #condition, #search_button {
     height: var(--input-height);
     box-sizing: border-box;
     border-radius: var(--border-radius);
-    border: none;
-    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
     width: 70%;
     justify-content: center;
     align-items: center;
-    color: var(--text-gray);
+    color: var(--text-main);
     font-weight: 500;
 }
 
 #search_button {
-    background-color: var(--primary-blue); /* colour of search button is different so it stands out */
-    color: var(--white) !important; /* ensure text is white */
+    background-color: var(--accent-primary);
+    color: #fff !important; 
     font-weight: 700;
     width: 100%;
 }
 
-#search_button:hover {
-    opacity: 0.9;
-}
+#search_button:hover { opacity: 0.9; }
 
 #search_bar {
     width: 100%;
@@ -122,7 +63,7 @@ a {
     background-repeat: no-repeat;
     background-size: 1rem;
     background-position: right 0.75em center;
-    text-align: left; /* added text alignment for search bar */
+    text-align: left;
 }
 
 .search-label, .listings-label {
@@ -130,35 +71,22 @@ a {
     font-weight: 700;
     margin-bottom: 0.5rem;
     font-size: 2.5rem;
-    color: var(--header-color);
+    color: var(--accent-primary);
 }
 
-#book_format, 
-#condition {
-    line-height: normal;
-    padding: 0 0.25rem;
-} 
+#book_format, #condition { line-height: normal; padding: 0 0.25rem; } 
 
 /* Books Grid */
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-}
+.books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 2rem auto; }
 
 /* Cards - Shared Styles */
-.card, 
-.single-card {
-    background-color: var(--background-light);
+.card, .single-card {
+    background-color: var(--bg-custom-card);
     border-radius: var(--border-radius);
+    border: none;
 }
 
-.card img, 
-.single-card img {
-    border-radius: var(--border-radius-sm);
-}
+.card img, .single-card img { border-radius: var(--border-radius-sm); }
 
 /* Book Listing Cards */
 .card {
@@ -166,34 +94,18 @@ a {
     gap: 1em;
     padding: 1rem;
     align-items: center;
-    box-shadow: 10px 10px #2a9ec7;
+    box-shadow: var(--shadow-custom);
     transition: transform 0.2s;
 }
 
-.card:hover {
-    transform: translateY(-0.25rem);
-}
-
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.card img {
-    width: 60%;
-    object-fit: cover;
-}
-
-.card-content h2,
-.card-content p {
-    margin: 1rem 0;
-    text-align: left;
-}
+.card:hover { transform: translateY(-0.25rem); }
+.card-link { text-decoration: none; color: inherit; display: block; }
+.card img { width: 60%; object-fit: cover; }
+.card-content h2, .card-content p { margin: 1rem 0; text-align: left; }
 
 /* Single Book Detail Page */
 .single-card {
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-card);
     padding: 2rem;
     max-width: 56.25rem;
     margin: 2rem auto;
@@ -203,165 +115,47 @@ a {
     align-items: start;
 }
 
-.single-card img {
-    width: 100%;
-    height: auto;
-}
+.single-card img { width: 100%; height: auto; }
 
-.single-card a {
+.admin-buttons a {
     display: inline-block;
-    background-color: var(--primary-blue);
-    color: var(--white);
+    background-color: var(--accent-primary);
+    color: #fff;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-sm);
     margin-right: 0.5rem;
 }
 
-.single-card a:hover {
-    background-color: var(--background-light);
-    color: var(--content-color);
+.admin-buttons a:hover {
+    background-color: var(--bg-body);
+    color: var(--text-main);
 }
 
 /* Back Link */
-a[href*="books.index"] {
-    display: inline-block;
-    margin: 1rem 2rem;
-    font-weight: 500;
-}
+a[href*="books.index"] { display: inline-block; margin: 1rem 2rem; font-weight: 500; }
 
-/* Responsive - Mobile */
+/* Responsive Media Queries remain exactly the same as your original */
 @media screen and (max-width: 600px) {
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "a1"
-            "searchSubmit"
-            "filters";
-        row-gap: 1rem;
-        margin: 0 auto;
-        max-width: 100%;
-
-    }
-
-    .a1 {
-        justify-content: center;
-        align-items: center;
-    }
-
-    .searchSubmit {
-        justify-content: center;
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .filters {
-        display: flex;
-        flex-direction: column; /* stack everything in one column */
-        gap: 0.75rem;
-        justify-content: center;
-        align-items: center;
-        padding: 0 0.25rem;
-    }
-
-    #search_bar {
-        grid-column: span 2;
-        width: 100%;
-    }
-
-    #book_format, 
-    #condition, 
-    #min_price, 
-    #max_price, 
-    #course, 
-    #search_bar, 
-    #search_button {
-        width: 100% !important;
-    }
-
-    .search_label {
-        font-size: 1.4rem;
-        text-align: center;
-        width: 90%;
-        word-wrap: break-word;
-    }
-
-    .books-grid {
-        grid-template-columns: repeat(1, minmax(260px, 1fr));
-        gap: 2rem;
-        margin: 1rem auto;
-        padding: 1rem;
-    }
-    
-    .card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0;
-        overflow: hidden;
-        
-    }
-    
-    .card img {
-        width: 100%;
-        margin-bottom: 1rem;
-        height: 200px; /* fixed height for consistency */
-        object-fit: cover;
-
-    }
-    
-    .single-card {
-        grid-template-columns: 1fr;
-        padding: 1.5rem;
-        margin: 1rem;
-        gap: 1.5rem;
-    }
-    
-    .single-card img {
-        max-width: 100%;
-        margin: 0 auto;
-        display: block;
-    }
+    .container { grid-template-columns: 1fr; grid-template-areas: "a1" "searchSubmit" "filters"; row-gap: 1rem; margin: 0 auto; max-width: 100%; }
+    .a1 { justify-content: center; align-items: center; }
+    .searchSubmit { justify-content: center; width: 100%; display: block; margin: 0 auto; }
+    .filters { display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; align-items: center; padding: 0 0.25rem; }
+    #search_bar { grid-column: span 2; width: 100%; }
+    #book_format, #condition, #min_price, #max_price, #course, #search_bar, #search_button { width: 100% !important; }
+    .search_label { font-size: 1.4rem; text-align: center; width: 90%; word-wrap: break-word; }
+    .books-grid { grid-template-columns: repeat(1, minmax(260px, 1fr)); gap: 2rem; margin: 1rem auto; padding: 1rem; }
+    .card { flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; }
+    .card img { width: 100%; margin-bottom: 1rem; height: 200px; object-fit: cover; }
+    .single-card { grid-template-columns: 1fr; padding: 1.5rem; margin: 1rem; gap: 1.5rem; }
+    .single-card img { max-width: 100%; margin: 0 auto; display: block; }
 }
 
-/* Responsive - Tablet */
 @media (min-width: 601px) and (max-width: 900px) {
-    .container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas:
-            "a1 a1"
-            "searchSubmit searchSubmit"
-            "filters filters";
-        padding: 1rem;
-        max-width: 100%;
-        overflow: hidden;
-        margin: 0 auto;
-    }
-    
-    .filters {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    /* forcing inputs to be full width on smaller screens */
-    #search_bar, #book_format, 
-    #course, #min_price, #max_price, #condition, 
-    #search_button {
-        width: 100% !important;
-    }
-    
-    #search_bar {
-        grid-column: span 3; /* make search bar whole row on tablet */
-    }
-    .card {
-        flex-direction: row;
-    }
-    
-    .card img {
-        width: 50%;
-    }
-
-    .books-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
+    .container { grid-template-columns: repeat(2, 1fr); grid-template-areas: "a1 a1" "searchSubmit searchSubmit" "filters filters"; padding: 1rem; max-width: 100%; overflow: hidden; margin: 0 auto; }
+    .filters { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    #search_bar, #book_format, #course, #min_price, #max_price, #condition, #search_button { width: 100% !important; }
+    #search_bar { grid-column: span 3; }
+    .card { flex-direction: row; }
+    .card img { width: 50%; }
+    .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
