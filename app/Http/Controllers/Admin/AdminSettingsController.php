@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
+use App\Support\SiteSettings;
 use Illuminate\Http\Request;
 
 class AdminSettingsController extends Controller
 {
     public function editTheme()
     {
-        $current = Setting::get('site_theme', 'default');
-        
         return view('admin.settings.theme', [
-            'current' => $current,
+            'current' => SiteSettings::getTheme('default'),
             'themes' => ['default', 'dark', 'seasonal'],
         ]);
     }
@@ -24,7 +22,7 @@ class AdminSettingsController extends Controller
             'theme' => ['required', 'in:default,dark,seasonal'],
         ]);
 
-        Setting::set('site_theme', $data['theme']);
+        SiteSettings::setTheme($data['theme']);
 
         return back()->with('status', 'Theme updated.');
     }

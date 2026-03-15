@@ -2,10 +2,14 @@
 
 @section('title','Admin - Theme')
 
-@section('content')
-<h1>Theme Settings</h1>
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
+@endsection
 
-<form method="POST" action="{{ route('admin.settings.theme.update') }}" class="card">
+@section('content')
+<div id="themes-page">
+<h1>Theme Settings</h1>
+<form method="POST" action="{{ route('admin.settings.theme.update') }}" class="user-form-card">
     @csrf
     <label>Site Theme</label>
     <select name="theme">
@@ -17,4 +21,5 @@
 </form>
 
 <p>Current: <strong>{{ $current }}</strong></p>
+</div>
 @endsection

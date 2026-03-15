@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
+use App\Support\SiteSettings;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +33,7 @@ class StatusController extends Controller
 
         // Theme setting reachable
         try {
-            $theme = Setting::get('site_theme', 'default');
+            $theme = SiteSettings::getTheme('default');
 
             $checks['theme_setting'] = ['ok' => true, 'message' => "Current: {$theme}"];
         } catch (\Throwable $e) {

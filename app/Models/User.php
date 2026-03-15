@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Support\SiteSettings;
 
 class User extends Authenticatable
 {
@@ -58,5 +59,30 @@ class User extends Authenticatable
     public function serviceRequests(): HasMany
     {
         return $this->hasMany(ServiceRequest::class);
+    }
+
+    /**
+     * Centralized admin check so Blade/UI and middleware stay consistent.
+     */
+    public function isAdmin(): bool
+    {
+        if (isset($this->is_admin) && (bool) $this->is_admin) {
+            return true;
+        }
+
+        $email = strtolower((string) ($this->email ?? ''));
+        if ($email === '') {
+            return false;
+        }
+
+        $raw = (string) env('ADMIN_EMAILS', '');
+        $emails = array_filter(array_map('trim', explode(',', $raw)));
+        $emails = array_values(array_unique(array_map(fn($e) => strtolower($e), $emails)));
+
+        if (in_array($email, $emails, true)) {
+            return true;
+        }
+
+        return in_array($email, SiteSettings::getAdminEmails(), true);
     }
 }

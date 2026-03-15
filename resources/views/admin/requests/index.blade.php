@@ -2,9 +2,16 @@
 
 @section('title','Admin - Requests')
 
-@section('content')
-<h1>Requests</h1>
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
+@endsection
 
+@section('content')
+<div class="a1">
+<h1 class="listings-label">Requests</h1>
+</div>
+
+<div class="books-grid">
 @foreach($requests as $r)
     <div class="card">
         <strong>{{ $r->subject }}</strong>
@@ -15,4 +22,5 @@
 @endforeach
 
 {{ $requests->links() }}
+</div>
 @endsection

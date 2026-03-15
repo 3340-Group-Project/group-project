@@ -1,0 +1,28 @@
+/* Preview-only styling (kept simple). If your project has real CSS, you can swap it in later. */
+body { font-family: Arial, sans-serif; margin: 0; background:#eef6fb; }
+header { background:#5aa9d6; padding:16px; color:#fff; }
+.container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.searchbar { display:flex; gap:8px; align-items:center; justify-content:center; margin: 10px 0 16px; flex-wrap:wrap; }
+.searchbar input, .searchbar select { padding:10px; border-radius: 10px; border:1px solid #b7d7ea; min-width: 170px; }
+.searchbar button { padding:10px 14px; border-radius:10px; border:0; background:#2e7ca6; color:#fff; cursor:pointer; }
+.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.card { background:#a9d3ea; border: 2px solid #6aaed1; border-radius: 10px; padding: 14px; box-shadow: 0 2px 0 rgba(0,0,0,.08); }
+.card h3 { margin: 0 0 8px; font-size: 16px; }
+.meta { font-size: 13px; line-height: 1.4; }
+.badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; background:#0b5f84; color:#fff; margin-top:8px; }
+.badge.sold { background:#666; }
+.toolbar { display:flex; gap:8px; margin-top: 12px; flex-wrap:wrap; }
+.toolbar button { padding:8px 10px; border-radius:10px; border:0; background:#0b5f84; color:#fff; cursor:pointer; }
+.toolbar button.danger { background:#b0192a; }
+small.note { display:block; color:#245; margin-top:8px; }
+.table { width:100%; border-collapse: collapse; margin-top: 10px; background:#fff; border-radius: 10px; overflow:hidden; }
+.table th, .table td { padding: 10px; border-bottom: 1px solid #e7eef4; text-align:left; }
+.table th { background:#f5fbff; }
+.actions { display:flex; gap:8px; flex-wrap:wrap; }
+.actions button { padding:6px 10px; border-radius:10px; border:0; cursor:pointer; color:#fff; background:#0b5f84; }
+.actions button.danger { background:#b0192a; }
+@media (max-width: 600px) {
+  header { text-align:center; }
+  .searchbar { justify-content:stretch; }
+  .searchbar input, .searchbar select { flex: 1; min-width: 140px; }
+}

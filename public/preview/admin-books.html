@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusShelf Preview - Admin Book Listings</title>
+  <link rel="stylesheet" href="./preview.css" />
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1 style="margin:0;">Admin • Book Listings (Preview)</h1>
+    <small class="note">Static preview to validate: delete listing + toggle sold + admin search/filter. No Laravel needed.</small>
+  </div>
+</header>
+
+<div class="container">
+  <div class="searchbar">
+    <input id="q" type="text" placeholder="Search title / course..." />
+    <select id="status">
+      <option value="all">All</option>
+      <option value="active">Active only</option>
+      <option value="sold">Sold only</option>
+    </select>
+    <button id="btn">Apply</button>
+    <button onclick="resetBooks()" title="Reset demo data">Reset</button>
+    <a href="./books.html" style="margin-left:auto;">← Back to Search Preview</a>
+  </div>
+
+  <table class="table" id="tbl">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Course</th>
+        <th>Price</th>
+        <th>Format</th>
+        <th>Condition</th>
+        <th>Status</th>
+        <th style="width:220px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <small class="note">
+    Tip: Try deleting a listing here, then go back to <a href="./books.html">Search Preview</a> — it should disappear there too (saved in localStorage).
+  </small>
+</div>
+
+<script src="./preview-data.js"></script>
+<script>
+function getParams() {
+  const p = new URLSearchParams(location.search);
+  return {
+    q: (p.get('q') || '').trim(),
+    status: (p.get('status') || 'all').trim()
+  };
+}
+
+function setInputsFromParams() {
+  const p = getParams();
+  document.getElementById('q').value = p.q;
+  document.getElementById('status').value = p.status;
+}
+
+function apply() {
+  const q = document.getElementById('q').value.trim();
+  const status = document.getElementById('status').value.trim();
+
+  const p = new URLSearchParams();
+  if (q) p.set('q', q);
+  if (status && status !== 'all') p.set('status', status);
+  location.search = p.toString();
+}
+
+function matches(book, params) {
+  if (params.q) {
+    const hay = (book.title + " " + book.course_code).toLowerCase();
+    if (!hay.includes(params.q.toLowerCase())) return false;
+  }
+  if (params.status === 'active' && book.sold) return false;
+  if (params.status === 'sold' && !book.sold) return false;
+  return true;
+}
+
+function render() {
+  const params = getParams();
+  const books = loadBooks();
+  const filtered = books.filter(b => matches(b, params));
+
+  const tbody = document.querySelector('#tbl tbody');
+  tbody.innerHTML = '';
+
+  for (const b of filtered) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${b.title}</td>
+      <td>${b.course_code}</td>
+      <td>$${b.price.toFixed(2)}</td>
+      <td>${b.format}</td>
+      <td>${b.condition}</td>
+      <td>${b.sold ? 'SOLD' : 'ACTIVE'}</td>
+      <td class="actions">
+        <button data-action="toggle" data-id="${b.id}">${b.sold ? 'Mark Active' : 'Mark Sold'}</button>
+        <button class="danger" data-action="delete" data-id="${b.id}">Delete</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  tbody.querySelectorAll('button[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.getAttribute('data-action');
+      const id = Number(btn.getAttribute('data-id'));
+      const all = loadBooks();
+      const idx = all.findIndex(x => x.id === id);
+      if (idx === -1) return;
+
+      if (action === 'delete') {
+        if (!confirm('Delete this listing?')) return;
+        all.splice(idx, 1);
+        saveBooks(all);
+        render();
+      } else if (action === 'toggle') {
+        all[idx].sold = !all[idx].sold;
+        saveBooks(all);
+        render();
+      }
+    });
+  });
+}
+
+document.getElementById('btn').addEventListener('click', apply);
+document.getElementById('q').addEventListener('keydown', (e) => { if (e.key === 'Enter') apply(); });
+
+setInputsFromParams();
+render();
+</script>
+</body>
+</html>
