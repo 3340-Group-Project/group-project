@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','Admin - Listings')
+
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
 @endsection

@@ -15,6 +15,53 @@
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
+/* Make logout button look like a link */
+.linklike {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* Admin Portal dropdown (desktop) */
+.nav-dropdown-wrap {
+    position: relative;
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.nav-dropdown > summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 220px;
+    background: #2a9ec7;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.nav-dropdown[open] .dropdown-menu {
+    display: block;
+}
+
 /* aligns nav buttons */
 .nav-auth-buttons {
     margin-left: auto;

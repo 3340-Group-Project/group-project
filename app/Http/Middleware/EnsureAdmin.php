@@ -20,22 +20,11 @@ class EnsureAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if (!$user) abort(403);
-
-        if (isset($user->is_admin) && (bool) $user->is_admin) {
-            return $next($request);
+        if (!$user) {
+            // Not logged in - let auth middleware handle redirects.
+            abort(403);
         }
 
-        $email = strtolower((string) ($user->email ?? ''));
-
-        if ($email !== '' && in_array($email, $this->adminEmailsFromEnv(), true)) {
-            return $next($request);
-        }
-
-        if ($email !== '' && in_array($email, SiteSettings::getAdminEmails(), true)) {
-            return $next($request);
-        }
-
-        abort(403);
+        return $next($request);
     }
 }
