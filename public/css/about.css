@@ -1,0 +1,148 @@
+:root {
+    --teal:       #2a9ec7;
+    --teal-light: #93cfe2;
+    --yellow:     #ffce04;
+    --white:      #ffffff;
+    --text-dark:  #000000;
+    --text-muted: #4C5B66;
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-dark);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: var(--teal);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.about-story {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 110px;
+    flex-wrap: wrap;
+}
+
+.story-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-text h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--teal);
+}
+
+.story-text p {
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.team-button {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--teal);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.team-button:hover {
+    background: var(--yellow);
+    color: var(--text-dark);
+    transform: translateY(-3px);
+}
+
+.story-icons {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-width: 280px;
+}
+
+.icon-box {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--teal);
+}
+
+.icon-box i {
+    font-size: 22px;
+    color: var(--teal);
+}
+
+.icon-box span {
+    font-weight: 500;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: var(--teal);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+    border-top: 4px solid var(--teal-light);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--yellow);
+}
+
+.feature-card i {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: var(--teal);
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}

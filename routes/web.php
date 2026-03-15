@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ServiceRequestController;
@@ -13,10 +14,20 @@ use App\Http\Controllers\Admin\AdminSettingsController;
 
 Route::view('/about', 'static.about')->name('about');
 
-// Home -> catalogue
 Route::view('/', 'static.Homepage')->name('home');
 
-// Auth
+Route::view('/contact', 'static.contactus')->name('contact');
+
+Route::post('/contact', function (Request $request) {
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'message' => 'required|string',
+    ]);
+
+    return redirect()->route('contact')->with('status', 'Thanks, your message was sent.');
+})->name('contact.submit');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
