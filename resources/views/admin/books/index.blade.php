@@ -1,4 +1,10 @@
+{-- JIN-NOTES: Blade view (UI template). Comments only, no logic change.
+     - This file renders part of the UI and connects to routes/controllers.
+     - Search '@section' and form actions to see what backend endpoint it hits. --}
+
 @extends('layouts.app')
+
+{{-- Admin Books page: delete listing + mark sold/active. Search/filter is GET so URL keeps filters. --}}
 
 @section('content')
 <div style="max-width: 1100px; margin: 0 auto; padding: 16px;">
@@ -13,10 +19,14 @@
         </div>
 
         <div class="row">
+
+{{-- NOTE: Form submits to the backend route in action=... --}}
             <form method="POST" action="{{ route('admin.books.toggleSold', $b) }}">
                 @csrf
                 <button type="submit">Toggle Sold</button>
             </form>
+
+{{-- NOTE: Form submits to the backend route in action=... --}}
             <form method="POST" action="{{ route('admin.books.destroy', $b) }}">
                 @csrf @method('DELETE')
                 <button type="submit" onclick="return confirm('Delete listing?')">Delete</button>

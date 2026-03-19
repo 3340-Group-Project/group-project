@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Models;
 
@@ -24,12 +25,12 @@ class ServiceRequest extends Model
     protected $casts = [
         'responded_at' => 'datetime',
     ];
-
+    // user(): controller/middleware handler.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
+    // responder(): controller/middleware handler.
     public function responder(): BelongsTo
     {
         return $this->belongsTo(User::class, 'responded_by');

@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Models;
 
@@ -28,12 +29,12 @@ class Book extends Model
         'is_sold' => 'boolean',
         'price_cents' => 'integer',
     ];
-
+    // user(): controller/middleware handler.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
+    // getPriceDollarsAttribute(): controller/middleware handler.
     public function getPriceDollarsAttribute(): string
     {
         return number_format($this->price_cents / 100, 2, '.', '');

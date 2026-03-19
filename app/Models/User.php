@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Models;
 
@@ -44,6 +45,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    // casts(): controller/middleware handler.
     protected function casts(): array
     {
         return [
@@ -51,11 +53,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // books(): controller/middleware handler.
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }
-
+    // serviceRequests(): controller/middleware handler.
     public function serviceRequests(): HasMany
     {
         return $this->hasMany(ServiceRequest::class);
@@ -64,6 +67,7 @@ class User extends Authenticatable
     /**
      * Centralized admin check so Blade/UI and middleware stay consistent.
      */
+    // isAdmin(): controller/middleware handler.
     public function isAdmin(): bool
     {
         if (isset($this->is_admin) && (bool) $this->is_admin) {

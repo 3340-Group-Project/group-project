@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers;
 
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class StatusController extends Controller
 {
+    // index(): controller/middleware handler.
     public function index()
     {
         $checks = [];

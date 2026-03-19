@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers;
 
@@ -13,6 +14,7 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // index(): controller/middleware handler.
     public function index(Request $request)
     {
         // 1. Initialize the query (only show active listings by default)
@@ -35,6 +37,7 @@ class BookController extends Controller
 
         // 4. Format/Filter Logic (Handles both 'format' and 'filter' params)
         $format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
+        // Same for format (some pages call it filter).
         if ($format !== '') {
             $q->where('format', $format);
         }
@@ -60,24 +63,24 @@ class BookController extends Controller
 
         return view('books.index', compact('books'));
     }
-
+    // show(): controller/middleware handler.
     public function show(Book $book)
     {
         $book->load('user');
         return view('books.show', compact('book'));
     }
-
+    // myListings(): controller/middleware handler.
     public function myListings()
     {
         $books = Auth::user()->books()->latest()->paginate(12);
         return view('books.my', compact('books'));
     }
-
+    // create(): controller/middleware handler.
     public function create()
     {
         return view('books.create');
     }
-
+    // store(): controller/middleware handler.
     public function store(Request $request)
     {
         $data = $this->validateBook($request);
@@ -93,13 +96,13 @@ class BookController extends Controller
 
         return redirect()->route('books.my')->with('status', 'Listing created!');
     }
-
+    // edit(): controller/middleware handler.
     public function edit(Book $book)
     {
         $this->authorizeOwner($book);
         return view('books.edit', compact('book'));
     }
-
+    // update(): controller/middleware handler.
     public function update(Request $request, Book $book)
     {
         $this->authorizeOwner($book);
@@ -118,7 +121,7 @@ class BookController extends Controller
 
         return redirect()->route('books.my')->with('status', 'Listing updated!');
     }
-
+    // markSold(): controller/middleware handler.
     public function markSold(Book $book)
     {
         $this->authorizeOwner($book);
@@ -127,7 +130,7 @@ class BookController extends Controller
 
         return back()->with('status', 'Marked as sold.');
     }
-
+    // destroy(): controller/middleware handler.
     public function destroy(Book $book)
     {
         $this->authorizeOwner($book);
@@ -140,7 +143,7 @@ class BookController extends Controller
 
         return redirect()->route('books.my')->with('status', 'Listing deleted.');
     }
-
+    // validateBook(): controller/middleware handler.
     private function validateBook(Request $request, ?int $bookId = null): array
     {
         $data = $request->validate([
@@ -160,7 +163,7 @@ class BookController extends Controller
 
         return $data;
     }
-
+    // authorizeOwner(): controller/middleware handler.
     private function authorizeOwner(Book $book): void
     {
         if ($book->user_id !== Auth::id() && !Auth::user()?->is_admin) {

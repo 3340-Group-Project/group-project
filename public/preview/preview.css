@@ -1,3 +1,4 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
 /* Preview-only styling (kept simple). If your project has real CSS, you can swap it in later. */
 body { font-family: Arial, sans-serif; margin: 0; background:#eef6fb; }
 header { background:#5aa9d6; padding:16px; color:#fff; }

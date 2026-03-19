@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers\Admin;
 
@@ -9,17 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminRequestController extends Controller
 {
+    // index(): controller/middleware handler.
     public function index()
     {
         $requests = ServiceRequest::query()->latest()->paginate(20);
         return view('admin.requests.index', compact('requests'));
     }
-
+    // show(): controller/middleware handler.
     public function show(ServiceRequest $requestModel)
     {
         return view('admin.requests.show', ['request' => $requestModel]);
     }
-
+    // respond(): controller/middleware handler.
     public function respond(Request $request, ServiceRequest $requestModel)
     {
         $data = $request->validate([

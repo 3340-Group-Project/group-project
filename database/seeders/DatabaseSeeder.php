@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace Database\Seeders;
 
@@ -9,6 +10,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+    // run(): controller/middleware handler.
     public function run(): void
     {
         $this->call([

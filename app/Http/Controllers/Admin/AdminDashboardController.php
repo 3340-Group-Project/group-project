@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers\Admin;
 
@@ -9,6 +10,7 @@ use App\Models\User;
 
 class AdminDashboardController extends Controller
 {
+    // index(): controller/middleware handler.
     public function index()
     {
         return view('admin.dashboard', [

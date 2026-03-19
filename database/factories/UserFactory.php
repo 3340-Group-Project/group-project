@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace Database\Factories;
 
@@ -21,6 +22,7 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    // definition(): controller/middleware handler.
     public function definition(): array
     {
         return [
@@ -35,6 +37,7 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
+    // unverified(): controller/middleware handler.
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [

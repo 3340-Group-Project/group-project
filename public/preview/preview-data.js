@@ -1,3 +1,4 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
 /**
  * Preview-only data store for static HTML testing (no Laravel / DB required).
  * It saves edits (delete/toggle sold) to localStorage so you can see changes.

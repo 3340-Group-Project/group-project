@@ -1,4 +1,10 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
+// Auth: /login, /signup, /logout
+// User (login required): /books/create, /my/listings, /requests
+// Admin (login + admin): /admin/* (books/users/requests/theme)
+// Status: /status (health checks)
+// =================================
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -49,6 +55,7 @@ Route::middleware(['auth', 'not_disabled'])->group(function () {
 });
 
 // Admin area
+// Admin-only area (must be logged in + not disabled + admin)
 Route::prefix('admin')->middleware(['auth', 'not_disabled', 'admin'])->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -68,5 +75,5 @@ Route::prefix('admin')->middleware(['auth', 'not_disabled', 'admin'])->group(fun
     Route::post('/settings/theme', [AdminSettingsController::class, 'updateTheme'])->name('admin.settings.theme.update');
 });
 
-// Monitoring page (could restrict to admin if you want)
+// Monitoring page (shows DB/storage/theme checks)
 Route::get('/status', [StatusController::class, 'index'])->name('status');

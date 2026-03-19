@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers\Admin;
 
@@ -8,8 +9,11 @@ use Illuminate\Http\Request;
 
 class AdminBookController extends Controller
 {
+    // index(): controller/middleware handler.
     public function index(Request $request)
     {
+        // Admin listing table: supports search (q) + status filter (all/active/sold).
+
         $q = trim((string) $request->query('q', ''));
         $status = (string) $request->query('status', 'all'); // all|active|sold
 
@@ -51,7 +55,7 @@ class AdminBookController extends Controller
 
         return view('admin.books.index', compact('books'));
     }
-
+    // toggleSold(): controller/middleware handler.
     public function toggleSold(Book $book)
     {
         $book->is_sold = !$book->is_sold;
@@ -59,7 +63,7 @@ class AdminBookController extends Controller
 
         return back()->with('status', 'Listing updated.');
     }
-
+    // destroy(): controller/middleware handler.
     public function destroy(Book $book)
     {
         $book->delete();

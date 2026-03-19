@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace Database\Seeders;
 
@@ -10,6 +11,7 @@ class BookSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+    // run(): controller/middleware handler.
     public function run(): void
     {
         \DB::table('books')->insert([

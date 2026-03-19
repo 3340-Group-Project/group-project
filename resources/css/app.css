@@ -1,3 +1,4 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

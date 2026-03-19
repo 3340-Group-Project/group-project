@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers\Admin;
 
@@ -8,6 +9,7 @@ use Illuminate\Http\Request;
 
 class AdminSettingsController extends Controller
 {
+    // editTheme(): controller/middleware handler.
     public function editTheme()
     {
         return view('admin.settings.theme', [
@@ -15,9 +17,11 @@ class AdminSettingsController extends Controller
             'themes' => ['default', 'dark', 'seasonal'],
         ]);
     }
-
+    // updateTheme(): controller/middleware handler.
     public function updateTheme(Request $request)
     {
+        // Theme is saved to a JSON file so we don't depend on DB being finished.
+
         $data = $request->validate([
             'theme' => ['required', 'in:default,dark,seasonal'],
         ]);
