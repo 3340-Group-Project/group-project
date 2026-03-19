@@ -1,8 +1,12 @@
+<!-- php file to specify content for each book related form -->
+
 @php
 $val = fn($k, $default='') => old($k, $book?->{$k} ?? $default);
 @endphp
 
+<!-- generate labels and inputs for the form -->
 <label>Title</label>
+<!-- each input should contain the information from db about the book (if not empty - good for editing bok listings) -->
 <input name="title" value="{{ $val('title') }}" required>
 
 <label>Course Code</label>
@@ -37,6 +41,7 @@ $val = fn($k, $default='') => old($k, $book?->{$k} ?? $default);
 <label>Cover Image</label>
 @if($book?->cover_image_path)
     <div>
+        <!-- set the directory for images to be saved in the storage directory -->
         <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Current cover image" style="max-width: 180px; height: auto; display: block; margin-bottom: 0.5rem;">
     </div>
 @endif

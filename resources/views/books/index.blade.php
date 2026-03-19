@@ -1,22 +1,29 @@
+<!-- php file for setting content for the book listings page -->
+
 @extends('layouts.app')
 @section('title', 'Book Listings')
 @section('body-attributes', 'id="book"')
 
+<!-- set the styling to books.css -->
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/books.css') }}"/>
 @endsection
 
 @section('content')
 <main>
+    <!-- uses GET method to retrieve existing resources -->
     <form method="GET" action="{{ route('books.index') }}" class="container">
+        <!-- header and search bar -->
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>
             <input type="text" id="search_bar" name="search_bar" value="{{ request('search_bar') }}" placeholder="Search for Books">
             
         </div>
+        <!-- enable search filters button -->
         <div class="searchSubmit">
             <button type="submit" id="search_button" name="search_button">Search</button>
         </div>
+        <!-- search filters -->
         <div class="filters">
             <div class="a2">
                 {{-- Use canonical query param name "format" so backend filter works. (Backend also supports legacy "filter") --}}
@@ -56,15 +63,18 @@
         </div>
     </form>
 
+    <!-- add message is there are no books in listings -->
     @if($books->count() === 0)
         <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
             <p>No books found. Try adjusting your filters.</p>
         </div>
     @else
+    <!-- render the book listings in a grid -->
         <section class="books-grid">
         @foreach($books as $book)
             <div>
                 <a href="{{ route('books.show', $book) }}" class="card-link">
+                    <!-- preview clickable card for each book listing -->
                     <div class="card">
                         @if($book->cover_image_path)
                             <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Book Cover"/>
