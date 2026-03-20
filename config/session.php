@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 use Illuminate\Support\Str;
 

@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers;
 
@@ -8,17 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceRequestController extends Controller
 {
+    // index(): controller/middleware handler.
     public function index()
     {
         $requests = Auth::user()->serviceRequests()->latest()->paginate(15);
         return view('requests.index', ['requests' => $requests]);
     }
-
+    // create(): controller/middleware handler.
     public function create()
     {
         return view('requests.create');
     }
-
+    // store(): controller/middleware handler.
     public function store(Request $request)
     {
         $data = $request->validate([

@@ -1,4 +1,10 @@
+{-- JIN-NOTES: Blade view (UI template). Comments only, no logic change.
+     - This file renders part of the UI and connects to routes/controllers.
+     - Search '@section' and form actions to see what backend endpoint it hits. --}
+
 @extends('layouts.app')
+
+{{-- Status page explanation (Jin): shows basic health checks (DB, storage, theme setting). --}}
 
 @section('title','System Status')
 

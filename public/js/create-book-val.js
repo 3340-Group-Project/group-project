@@ -1,3 +1,4 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('create-listing-form');
   if (!form) return;

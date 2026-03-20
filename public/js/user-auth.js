@@ -1,3 +1,4 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
 // JavaScript for user authentication forms (login and registration)
 
 document.addEventListener('DOMContentLoaded', () => {

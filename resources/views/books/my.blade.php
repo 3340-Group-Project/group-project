@@ -1,3 +1,7 @@
+{-- JIN-NOTES: Blade view (UI template). Comments only, no logic change.
+     - This file renders part of the UI and connects to routes/controllers.
+     - Search '@section' and form actions to see what backend endpoint it hits. --}
+
 @extends('layouts.app')
 
 @section('title', 'My Listings')
@@ -27,10 +31,14 @@
                 @if($book->is_sold) <span class="badge">Sold</span> @endif
                 <div class="row">
                     <a href="{{ route('books.edit', $book) }}">Edit</a>
+
+{{-- NOTE: Form submits to the backend route in action=... --}}
                     <form method="POST" action="{{ route('books.sold', $book) }}">
                         @csrf
                         <button type="submit">Mark Sold</button>
                     </form>
+
+{{-- NOTE: Form submits to the backend route in action=... --}}
                     <form method="POST" action="{{ route('books.destroy', $book) }}">
                         @csrf @method('DELETE')
                         <button type="submit" onclick="return confirm('Delete listing?')">Delete</button>

@@ -1,3 +1,7 @@
+{-- JIN-NOTES: Blade view (UI template). Comments only, no logic change.
+     - This file renders part of the UI and connects to routes/controllers.
+     - Search '@section' and form actions to see what backend endpoint it hits. --}
+
 @extends('layouts.app')
 @section('title', 'Book Listings')
 @section('body-attributes', 'id="book"')
@@ -8,6 +12,8 @@
 
 @section('content')
 <main>
+
+{{-- NOTE: Form submits to the backend route in action=... --}}
     <form method="GET" action="{{ route('books.index') }}" class="container">
         <div class="a1">
             <label class="search-label" for="search">Search for Books</label>

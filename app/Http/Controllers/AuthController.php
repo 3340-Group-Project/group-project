@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Http\Controllers;
 
@@ -10,11 +11,12 @@ use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
+    // showLogin(): controller/middleware handler.
     public function showLogin()
     {
         return view('auth.login');
     }
-
+    // login(): controller/middleware handler.
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -31,12 +33,12 @@ class AuthController extends Controller
         // disabled check is handled by middleware on authenticated routes
         return redirect()->intended(route('home'));
     }
-
+    // showRegister(): controller/middleware handler.
     public function showRegister()
     {
         return view('auth.register');
     }
-
+    // register(): controller/middleware handler.
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -67,7 +69,7 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
-
+    // logout(): controller/middleware handler.
     public function logout(Request $request)
     {
         Auth::logout();

@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 namespace App\Support;
 
@@ -6,6 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteSettings
 {
+    // We store small site-wide settings in storage/app/site-settings.json
+    // Reason: works even before DB tables/columns are finalized.
+
     private const FILE = 'site-settings.json';
     private const ALLOWED_THEMES = ['default', 'dark', 'seasonal'];
 

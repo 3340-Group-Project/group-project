@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;

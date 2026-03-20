@@ -1,4 +1,5 @@
 <?php
+// NOTE: File-level comments describe purpose only (no logic change).
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,6 +10,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // up(): controller/middleware handler.
     public function up(): void
     {
         Schema::create('sessions', function (Blueprint $table) {
@@ -24,6 +26,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    // down(): controller/middleware handler.
     public function down(): void
     {
         Schema::dropIfExists('sessions');

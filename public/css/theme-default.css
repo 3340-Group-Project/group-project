@@ -1,3 +1,5 @@
+/* NOTE: Comments explain styling/behavior only (no logic change). */
+/* Theme file (site-wide). Admin can switch themes in /admin/settings/theme. */
 body{font-family:system-ui,Arial,sans-serif;margin:0;background:#f6fbff;color:#102a43}
 .container{max-width:1100px;margin:0 auto;padding:16px}
 .navbar{background:#2f87b7;color:#fff}
