@@ -1,3 +1,4 @@
+<!-- php file that will handle DB schema and migration for user session times  -->
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,12 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
+            $table->string('id')->primary(); /* unique session identifier as primary key */
+            $table->foreignId('user_id')->nullable()->index(); /** optional user id link for authenticated sessions */
+            $table->string('ip_address', 45)->nullable(); /* optional field for user ip address */
+            $table->text('user_agent')->nullable(); /* optional field for browser and device information */
+            $table->longText('payload'); /* required field to store serialized session data */
+            $table->integer('last_activity')->index(); /* unix timestamp of the last user activity */
         });
     }
 

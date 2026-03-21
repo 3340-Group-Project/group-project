@@ -1,3 +1,4 @@
+<!-- php file that will handle DB schema and migration for service request data  -->
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,20 +13,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('service_requests', function (Blueprint $table) {
-            $table->id();
+            $table->id(); /* unique identifier for the service request */
+            /** make user id the FK and delete requests if user is removed */
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('subject');
-            $table->text('message');
-            $table->string('attachment_path')->nullable();
-            $table->timestamps();
+            $table->string('subject'); /* required field for the subject of the request */
+            $table->text('message'); /* required field for the detailed request message */
+            $table->string('attachment_path')->nullable(); /* optional field for a file attachment path */
+            $table->timestamps(); /* timestamps for when the request was submitted or updated */
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    // public function down(): void
-    // {
-    //     Schema::dropIfExists('service_requests');
-    // }
+    public function down(): void
+    {
+        Schema::dropIfExists('service_requests'); /* drops the table if the migration is rolled back */
+    }
 };
