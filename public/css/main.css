@@ -1,3 +1,4 @@
+/* Comments added to explain shared site-wide styles and utility classes. */
 /* remove default margin and add fallback background color */
 html, body {
     margin: 0;

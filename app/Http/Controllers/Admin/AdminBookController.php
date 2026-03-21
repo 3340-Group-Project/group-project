@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -8,9 +11,11 @@ use Illuminate\Http\Request;
 
 class AdminBookController extends Controller
 {
+    // NOTE: index() handles this route/action.
     public function index(Request $request)
     {
-        $q = trim((string) $request->query('q', ''));
+                // Admin book list: q=search, status=all/active/sold.
+$q = trim((string) $request->query('q', ''));
         $status = (string) $request->query('status', 'all'); // all|active|sold
 
         $books = Book::query()
@@ -24,7 +29,7 @@ class AdminBookController extends Controller
             ->when($status === 'sold', fn($query) => $query->where('is_sold', true))
             ->latest()
             ->paginate(20)
-            ->withQueryString();
+            ->withQueryString(); // NOTE: keeps current filters in pagination links.
 
         $search = trim((string) $request->query('q', ''));
         $status = trim((string) $request->query('status', '')); // active | sold | all
@@ -52,6 +57,7 @@ class AdminBookController extends Controller
         return view('admin.books.index', compact('books'));
     }
 
+    // NOTE: toggleSold() handles this route/action.
     public function toggleSold(Book $book)
     {
         $book->is_sold = !$book->is_sold;
@@ -60,6 +66,7 @@ class AdminBookController extends Controller
         return back()->with('status', 'Listing updated.');
     }
 
+    // NOTE: destroy() handles this route/action.
     public function destroy(Book $book)
     {
         $book->delete();

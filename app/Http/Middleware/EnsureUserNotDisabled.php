@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Middleware runs before the controller; it can block/redirect requests.
+
+
 namespace App\Http\Middleware;
 
 use App\Support\SiteSettings;
@@ -10,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EnsureUserNotDisabled
 {
+    // Disabled check order: DB is_disabled -> .env DISABLED_EMAILS -> file disabled_emails.
+
     private function disabledEmailsFromEnv(): array
     {
         $raw = (string) env('DISABLED_EMAILS', '');
@@ -17,6 +22,7 @@ class EnsureUserNotDisabled
         return array_values(array_unique(array_map(fn($e) => strtolower($e), $emails)));
     }
 
+    // NOTE: handle() handles this route/action.
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();

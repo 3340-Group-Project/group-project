@@ -1,3 +1,4 @@
+/* Comments added to explain shared form page layout and important UI sections. */
 /* CSS for form-based styling */
 
 main.container:has(#login-page), main.container:has(#signup-page), main.container:has(#create-listing-page), main.container:has(#edit-listing-page), main.container:has(#create-request-page), main.container:has(#themes-page) {
@@ -10,6 +11,7 @@ main.container:has(#login-page), main.container:has(#signup-page), main.containe
     min-height: 70vh;
 }
 
+/* Shared full-page form layout wrapper. */
 #login-page, #signup-page, #create-listing-page, #edit-listing-page, #create-request-page, #themes-page {
     display: flex;
     flex-direction: column;
@@ -26,11 +28,13 @@ main.container:has(#login-page), main.container:has(#signup-page), main.containe
     color: var(--accent-primary);
 }
 
+/* Supporting heading style for form pages. */
 #login-page h3, #signup-page h3, #create-listing-page h3, #edit-listing-page h3, #create-request-page h3, #themes-page h3  {
     text-align: center;
     color: var(--accent-primary);
 }
 
+/* Footer row under forms for helper links / user info. */
 .user-info-footer {
     display: flex;
     align-items: center;
@@ -42,6 +46,7 @@ main.container:has(#login-page), main.container:has(#signup-page), main.containe
 .user-info-footer span { font-size: 0.77rem; }
 #signup-footer { justify-content: center; }
 
+/* Main card that wraps the form fields. */
 .user-form-card {
     display: flex;
     width: 100%;
@@ -117,6 +122,7 @@ input[type="email"], input[type="password"], input[type="tel"], #regname {
 
 .remember-me input[type="checkbox"] { width: auto; height: 1.25rem; margin: 0; }
 
+/* Mobile layout changes for small screens. */
 @media screen and (max-width: 600px) {
     main.container:has(#login-page), main.container:has(#signup-page) { padding: 1rem; min-height: auto; margin-top: 2rem; }
     #login-page h1, #signup-page h1, #create-listing-page h1, #edit-listing-page h1 { font-size: 2.2rem; text-align: center; }

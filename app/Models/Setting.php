@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Model defines DB fields (fillable), casts, and relationships.
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

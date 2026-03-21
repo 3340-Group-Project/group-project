@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteSettings
 {
+    // Stores settings in storage/app/site-settings.json (no DB required).
+
     private const FILE = 'site-settings.json';
     private const ALLOWED_THEMES = ['default', 'dark', 'seasonal'];
 

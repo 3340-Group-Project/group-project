@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Model defines DB fields (fillable), casts, and relationships.
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,11 +32,13 @@ class Book extends Model
         'price_cents' => 'integer',
     ];
 
+    // NOTE: user() handles this route/action.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    // NOTE: getPriceDollarsAttribute() handles this route/action.
     public function getPriceDollarsAttribute(): string
     {
         return number_format($this->price_cents / 100, 2, '.', '');

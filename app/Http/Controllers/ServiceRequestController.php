@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers;
 
 use App\Models\ServiceRequest;
@@ -8,17 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceRequestController extends Controller
 {
+    // NOTE: index() handles this route/action.
     public function index()
     {
         $requests = Auth::user()->serviceRequests()->latest()->paginate(15);
         return view('requests.index', ['requests' => $requests]);
     }
 
+    // NOTE: create() handles this route/action.
     public function create()
     {
         return view('requests.create');
     }
 
+    // NOTE: store() handles this route/action.
     public function store(Request $request)
     {
         $data = $request->validate([
