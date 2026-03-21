@@ -1,3 +1,5 @@
+<!-- php file that will handle DB schema and migration for book listing information -->
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            /** make user id FK */
+            /** make user id the FK */
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('course_code'); /** added course code as required */
-            $table->string('author')->nullable();
-            $table->string('isbn')->nullable();
-            $table->string('format')->nullable();
-            $table->string('condition')->nullable();
-            $table->integer('price_cents');
-            $table->text('description')->nullable();
-            $table->string('cover_image_path'); /** added cover as required */
-            $table->boolean('is_sold')->default(false);
-            $table->timestamps();
+            $table->string('title'); /* required field for title of book */
+            $table->string('course_code'); /* required course code information */
+            $table->string('author')->nullable(); /* optional field for author */
+            $table->string('isbn')->nullable(); /* optional field for isbn */
+            $table->string('format'); /* required field for book format */
+            $table->string('condition'); /* required field for book condition */
+            $table->integer('price_cents'); /* optional field for price */
+            $table->text('description')->nullable(); /* optional field for book description */
+            $table->string('cover_image_path'); /** required field for image of book */
+            $table->boolean('is_sold')->default(false); /* boolean value to show if book has been sold or not */
+            $table->timestamps(); /* time stamp from one book listing was made */
         });
     }
 
