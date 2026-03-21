@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('email')->unique(); /* required and unique email for each user */
             $table->string('phone')->nullable()->unique(); /** optional and unique phone number for user */
             $table->string('password'); /* required field for password */
+            // NOTE: keep role/disable flags on the user row so admin actions update immediately in the DB.
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_disabled')->default(false);
             $table->timestamps(); /* timestamp for when user was created */
         });
     }
@@ -26,8 +29,9 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    // public function down(): void
-    // {
-    //     Schema::dropIfExists('users');
-    // }
+    public function down(): void
+    {
+        // NOTE: dropping the whole users table is fine here because this is the create-table migration.
+        Schema::dropIfExists('users');
+    }
 };

@@ -8,6 +8,19 @@
 {{-- Main heading for the status page so users know this page shows system health checks. --}}
 <h1>System Status</h1>
 
+{{-- Overall website status card so the monitoring page clearly shows online/offline first. --}}
+@php($allChecksOk = collect($checks)->every(fn($check) => !empty($check['ok'])))
+<div class="card">
+    <strong>Website:</strong>
+    @if($allChecksOk)
+        <span class="badge ok">ONLINE</span>
+    @else
+        <span class="badge bad">OFFLINE</span>
+    @endif
+    <div><small>Overall result based on the simple service checks below.</small></div>
+</div>
+
+
 {{-- Loop through every status check passed from the controller.
      $name is the label of the check, and $c stores that check's result data. --}}
 @foreach($checks as $name => $c)
