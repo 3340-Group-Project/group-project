@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Book;
@@ -13,6 +16,7 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // NOTE: index() handles this route/action.
     public function index(Request $request)
     {
         // 1. Initialize the query (only show active listings by default)
@@ -34,7 +38,8 @@ class BookController extends Controller
         }
 
         // 4. Format/Filter Logic (Handles both 'format' and 'filter' params)
-        $format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
+                // Accept format or filter (different front-end names).
+$format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
         if ($format !== '') {
             $q->where('format', $format);
         }
@@ -56,28 +61,32 @@ class BookController extends Controller
         }
 
         // 7. Execute Pagination
-        $books = $q->latest()->paginate(12)->withQueryString();
+        $books = $q->latest()->paginate(12)->withQueryString(); // NOTE: keeps current filters in pagination links.
 
         return view('books.index', compact('books'));
     }
 
+    // NOTE: show() handles this route/action.
     public function show(Book $book)
     {
         $book->load('user');
         return view('books.show', compact('book'));
     }
 
+    // NOTE: myListings() handles this route/action.
     public function myListings()
     {
         $books = Auth::user()->books()->latest()->paginate(12);
         return view('books.my', compact('books'));
     }
 
+    // NOTE: create() handles this route/action.
     public function create()
     {
         return view('books.create');
     }
 
+    // NOTE: store() handles this route/action.
     public function store(Request $request)
     {
         $data = $this->validateBook($request);
@@ -94,12 +103,14 @@ class BookController extends Controller
         return redirect()->route('books.my')->with('status', 'Listing created!');
     }
 
+    // NOTE: edit() handles this route/action.
     public function edit(Book $book)
     {
         $this->authorizeOwner($book);
         return view('books.edit', compact('book'));
     }
 
+    // NOTE: update() handles this route/action.
     public function update(Request $request, Book $book)
     {
         $this->authorizeOwner($book);
@@ -119,6 +130,7 @@ class BookController extends Controller
         return redirect()->route('books.my')->with('status', 'Listing updated!');
     }
 
+    // NOTE: markSold() handles this route/action.
     public function markSold(Book $book)
     {
         $this->authorizeOwner($book);
@@ -128,6 +140,7 @@ class BookController extends Controller
         return back()->with('status', 'Marked as sold.');
     }
 
+    // NOTE: destroy() handles this route/action.
     public function destroy(Book $book)
     {
         $this->authorizeOwner($book);
@@ -141,6 +154,7 @@ class BookController extends Controller
         return redirect()->route('books.my')->with('status', 'Listing deleted.');
     }
 
+    // NOTE: validateBook() handles this route/action.
     private function validateBook(Request $request, ?int $bookId = null): array
     {
         $data = $request->validate([
@@ -161,10 +175,11 @@ class BookController extends Controller
         return $data;
     }
 
+    // NOTE: authorizeOwner() handles this route/action.
     private function authorizeOwner(Book $book): void
     {
         if ($book->user_id !== Auth::id() && !Auth::user()?->is_admin) {
-            abort(403);
+            abort(403); // NOTE: forbidden (not allowed).
         }
     }
 }

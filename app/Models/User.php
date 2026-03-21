@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Model defines DB fields (fillable), casts, and relationships.
+
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -44,6 +47,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    // NOTE: casts() handles this route/action.
     protected function casts(): array
     {
         return [
@@ -51,11 +55,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // NOTE: books() handles this route/action.
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }
 
+    // NOTE: serviceRequests() handles this route/action.
     public function serviceRequests(): HasMany
     {
         return $this->hasMany(ServiceRequest::class);
@@ -64,6 +70,7 @@ class User extends Authenticatable
     /**
      * Centralized admin check so Blade/UI and middleware stay consistent.
      */
+    // NOTE: isAdmin() handles this route/action.
     public function isAdmin(): bool
     {
         if (isset($this->is_admin) && (bool) $this->is_admin) {

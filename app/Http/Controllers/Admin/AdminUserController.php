@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -9,6 +12,7 @@ use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {
+    // NOTE: index() handles this route/action.
     public function index(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
@@ -19,14 +23,16 @@ class AdminUserController extends Controller
             })
             ->latest()
             ->paginate(20)
-            ->withQueryString();
+            ->withQueryString(); // NOTE: keeps current filters in pagination links.
 
         return view('admin.users.index', compact('users'));
     }
 
+    // NOTE: toggleDisabled() handles this route/action.
     public function toggleDisabled(User $user)
     {
-        try {
+                // Toggle uses DB columns if present, otherwise file-based list.
+try {
             if (isset($user->is_admin) && (bool)$user->is_admin) {
                 return back()->withErrors(['user' => 'Cannot disable an admin account.']);
             }
@@ -44,6 +50,7 @@ class AdminUserController extends Controller
         return back()->with('status', 'User updated (file-based list).');
     }
 
+    // NOTE: toggleAdmin() handles this route/action.
     public function toggleAdmin(User $user)
     {
         try {

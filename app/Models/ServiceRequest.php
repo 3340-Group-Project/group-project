@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Model defines DB fields (fillable), casts, and relationships.
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,11 +28,13 @@ class ServiceRequest extends Model
         'responded_at' => 'datetime',
     ];
 
+    // NOTE: user() handles this route/action.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    // NOTE: responder() handles this route/action.
     public function responder(): BelongsTo
     {
         return $this->belongsTo(User::class, 'responded_by');

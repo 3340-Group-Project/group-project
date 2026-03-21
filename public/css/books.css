@@ -1,3 +1,4 @@
+/* Comments added to explain the layout, cards, filters, and responsive rules. */
 /* CSS Variables for Sizes (Colors removed, relying on themes.css) */
 :root {
     --border-radius: 0.5rem;
@@ -47,6 +48,7 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
     font-weight: 500;
 }
 
+/* Primary search button styling. */
 #search_button {
     background-color: var(--accent-primary);
     color: #fff !important; 
@@ -56,6 +58,7 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
 
 #search_button:hover { opacity: 0.9; }
 
+/* Search input with icon placed on the right side. */
 #search_bar {
     width: 100%;
     padding-left: 0.5rem;
@@ -66,6 +69,7 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
     text-align: left;
 }
 
+/* Large labels used as section headings on the page. */
 .search-label, .listings-label {
     padding-top: 1rem;
     font-weight: 700;
@@ -117,6 +121,7 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
 
 .single-card img { width: 100%; height: auto; }
 
+/* Admin action buttons like edit/delete on the book page. */
 .admin-buttons a {
     display: inline-block;
     background-color: var(--accent-primary);
@@ -126,6 +131,7 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
     margin-right: 0.5rem;
 }
 
+/* Hover state for admin action buttons. */
 .admin-buttons a:hover {
     background-color: var(--bg-body);
     color: var(--text-main);
@@ -150,6 +156,7 @@ a[href*="books.index"] { display: inline-block; margin: 1rem 2rem; font-weight: 
     .single-card img { max-width: 100%; margin: 0 auto; display: block; }
 }
 
+/* Tablet layout changes for medium screens. */
 @media (min-width: 601px) and (max-width: 900px) {
     .container { grid-template-columns: repeat(2, 1fr); grid-template-areas: "a1 a1" "searchSubmit searchSubmit" "filters filters"; padding: 1rem; max-width: 100%; overflow: hidden; margin: 0 auto; }
     .filters { grid-template-columns: repeat(3, 1fr); gap: 1rem; }

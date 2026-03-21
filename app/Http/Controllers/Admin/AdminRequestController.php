@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -9,17 +12,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminRequestController extends Controller
 {
+    // NOTE: index() handles this route/action.
     public function index()
     {
         $requests = ServiceRequest::query()->latest()->paginate(20);
         return view('admin.requests.index', compact('requests'));
     }
 
+    // NOTE: show() handles this route/action.
     public function show(ServiceRequest $requestModel)
     {
         return view('admin.requests.show', ['request' => $requestModel]);
     }
 
+    // NOTE: respond() handles this route/action.
     public function respond(Request $request, ServiceRequest $requestModel)
     {
         $data = $request->validate([
