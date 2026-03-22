@@ -31,6 +31,7 @@ This README section is written from the actual files in this folder so the setup
 - **`sessions`**: Manages active user session data, tracking browser information and last activity timestamps for security and session handling.
 - **`settings`**: Stores global application configuration key-value pairs, such as theme preferences or site-wide toggles.
 
+```mermaid
 erDiagram
     USERS ||--o{ BOOKS : "has many"
     USERS ||--o{ SERVICE_REQUESTS : "has many"
@@ -91,6 +92,7 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+```
 
 ## Installation Steps
 
