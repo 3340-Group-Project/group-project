@@ -3,32 +3,47 @@
 @section('title', 'CampusShelf - Home')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 @endsection
 
 @section('content')
 <div class="homepage-layout">
+
+    <!-- hero section (top of homepage) -->
     <section class="hero">
+
+        <!-- background shapes -->
         <div class="shape-mid"></div>
         <div class="shape-bottom"></div>
         <div class="yellow-circle"></div>
 
         <div class="hero-content">
+
+            <!-- main headline -->
             <h1 class="hero-title">A better way to get<br>your textbooks</h1>
 
+            <!-- mobile circle (only shows on smaller screens) -->
             <div class="yellow-circle-mobile"></div>
 
+            <!-- short description -->
             <p class="hero-subtitle">
                 Purchase textbooks from other students who have<br>
                 already taken your classes at your home university!
             </p>
 
+            <!-- main buttons -->
             <div class="hero-buttons">
+                <!-- might link this to signup later -->
                 <a href="#" class="btn btn-solid">Get Started</a>
+
+                <!-- about page -->
                 <a href="{{ route('about') }}" class="btn btn-solid">About us</a>
             </div>
 
+            <!-- small feature highlights -->
             <div class="hero-features">
+
+                <!-- student-built -->
                 <div class="feature">
                     <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <circle cx="12" cy="7" r="4"/>
@@ -37,6 +52,8 @@
                     </svg>
                     <span>Built by students,<br>for students</span>
                 </div>
+
+                <!-- meetup/trading -->
                 <div class="feature">
                     <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
@@ -47,6 +64,7 @@
             </div>
         </div>
 
+        <!-- placeholder cards (could show listings later) -->
         <div class="cards-section">
             <div class="card"></div>
             <div class="card"></div>
