@@ -25,7 +25,9 @@
 
     <h3>Create an account to get started!</h3>
 
+    <!-- POST method used to ensure security -->
     <form method="POST" action="{{ route('register.post') }}" class="user-form-card" id="signup-form">
+        
         <!-- @csrf used to prevent cross-site requests and malicious attacks -->
         @csrf
 
@@ -69,6 +71,7 @@
             <button type="reset" class="userRegBtn" id="cancelBtn">Cancel</button>
         </div>
 
+        <!-- footer for extra link unrelated to main signup features -->
         <div class="user-info-footer" id="signup-footer">
             <span class="login-link">Already have an account? <a href="{{ route('login') }}">Sign in</a></span>
         </div>

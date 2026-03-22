@@ -24,7 +24,9 @@
 
     <h3>Log in to continue</h3>
 
+        <!-- POST method used to ensure security -->
         <form method="POST" action="{{ route('login.post') }}" class="user-form-card" id="login-form">
+            
             <!-- @csrf used to prevent cross-site requests and malicious attacks -->
             @csrf
             
@@ -38,9 +40,9 @@
                     <span class="error-text">{{ $message }}</span>
                 @enderror
 
+                <!-- user password input -->
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
-
 
                 @error('password')
                     <span class="error-text">{{ $message }}</span>
@@ -49,11 +51,13 @@
                 <label class="remember-me">
                     <input type="checkbox" name="remember" value="1">Remember Me</input>
                 </label>
-
+                
+                <!-- only one button for login page since form is short -->
                 <button type="submit" class="userRegBtn">Login</button>
 
             </div>
 
+            <!-- footer for extra link unrelated to main login features -->
             <div class="user-info-footer">
                 <span class="signup-link">No account? <a href="{{ route('register') }}">Sign Up</a></span>
             </div>
