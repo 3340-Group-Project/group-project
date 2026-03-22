@@ -20,7 +20,7 @@
         <div class="team-card">
             <div class="team-avatar">
                 <!-- placeholder icon for now -->
-                <i class="fa-solid fa-user"></i>
+                <img src="{{ asset('images/KatTeamPhoto.png') }}" alt="Katarina Mantay" class="team-avatar-img">
             </div>
             <div class="team-name">Katarina Mantay</div>
             <div class="team-role">3rd Year Computer Science</div>
@@ -32,7 +32,7 @@
         <!-- kulsum -->
         <div class="team-card">
             <div class="team-avatar">
-                <i class="fa-solid fa-user"></i>
+                <img src="{{ asset('images/KulsumTeamPhoto.png') }}" alt="Kulsum Khan" class="team-avatar-img">
             </div>
             <div class="team-name">Kulsum Khan</div>
             <div class="team-role">3rd Year Computer Science</div>
@@ -44,7 +44,7 @@
         <!-- rocio -->
         <div class="team-card">
             <div class="team-avatar">
-                <i class="fa-solid fa-user"></i>
+                <img src="{{ asset('images/RocioTeamPhoto.png') }}" alt="Rocio Rueda" class="team-avatar-img">
             </div>
             <div class="team-name">Rocio Rueda</div>
             <div class="team-role">4th Year Computer Science</div>
@@ -56,7 +56,7 @@
         <!-- jin -->
         <div class="team-card">
             <div class="team-avatar">
-                <i class="fa-solid fa-user"></i>
+                <img src="{{ asset('images/JinTeamPhoto.png') }}" alt="Jin Cai" class="team-avatar-img">
             </div>
             <div class="team-name">Jin Cai</div>
             <div class="team-role">4th Year Computer Science</div>
