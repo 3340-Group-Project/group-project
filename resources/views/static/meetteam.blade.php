@@ -4,17 +4,22 @@
 
 @section('content')
 
+<!-- styles for this page -->
 <link rel="stylesheet" href="{{ asset('css/meetteam.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="team-container">
 
+    <!-- page title -->
     <h1>Meet the Team</h1>
 
+    <!-- grid layout for team members -->
     <div class="team-grid">
 
+        <!-- kat -->
         <div class="team-card">
             <div class="team-avatar">
+                <!-- placeholder icon for now -->
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="team-name">Katarina Mantay</div>
@@ -24,6 +29,7 @@
             </div>
         </div>
 
+        <!-- kulsum -->
         <div class="team-card">
             <div class="team-avatar">
                 <i class="fa-solid fa-user"></i>
@@ -35,6 +41,7 @@
             </div>
         </div>
 
+        <!-- rocio -->
         <div class="team-card">
             <div class="team-avatar">
                 <i class="fa-solid fa-user"></i>
@@ -46,6 +53,7 @@
             </div>
         </div>
 
+        <!-- jin -->
         <div class="team-card">
             <div class="team-avatar">
                 <i class="fa-solid fa-user"></i>
