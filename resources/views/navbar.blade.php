@@ -19,10 +19,11 @@
         </li>
 
         <li><a class="nav-link" href="{{ route('about') }}">About</a></li>
-        <li><a class="nav-link" href="{{ route('meet-team') }}">Meet the Team</a></li>
+        <li><a class="nav-link" href="{{ route('meet-team') }}">Team</a></li>
+        <li><a class="nav-link" href="{{ route('faq') }}">FAQ</a></li>
         <li><a class="nav-link" href="/wiki">Wiki</a></li>
         <li><a class="nav-link" href="{{ route('books.index') }}">Book Listings</a></li>
-        <li><a class="nav-link" href="/contact">Contact us</a></li>
+        <li><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
 
         <!-- if user is not logged in -->
         @guest

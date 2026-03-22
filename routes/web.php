@@ -18,11 +18,14 @@ Route::view('/about', 'static.about')->name('about');
 // Home page route that directly returns the homepage view.
 Route::view('/', 'static.Homepage')->name('home');
 
-// Static contact page shown before the form is submitted.
-Route::view('/contact', 'static.contactus')->name('contact');
-
 // Static Meet the Team page route.
 Route::view('/meet-team', 'static.meetteam')->name('meet-team');
+
+// FAQ static page
+Route::view('/faq', 'static.faq')->name('faq');
+
+// Static contact page shown before the form is submitted.
+Route::view('/contact', 'static.contactus')->name('contact');
 
 // Handle contact form submission.
 Route::post('/contact', function (Request $request) {
