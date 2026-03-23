@@ -1,3 +1,4 @@
+/* Comments added to explain navbar structure, links, and responsive behavior. */
 /* For adjusting logo dimentions */
 .logo { width: 50px; }
 
@@ -47,7 +48,7 @@
     top: calc(100% + 6px);
     left: 0;
     min-width: 220px;
-    background: #2a9ec7;
+    background: --bg-nav;
     border-radius: 0.25rem;
     padding: 0.25rem;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);

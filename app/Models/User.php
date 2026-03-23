@@ -1,5 +1,7 @@
 <?php
 
+// NOTE: Model defines DB fields (fillable), casts, and relationships.
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -44,18 +46,24 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    // NOTE: casts() converts DB values into booleans/dates automatically when User is loaded.
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_disabled' => 'boolean',
         ];
     }
+
+    // NOTE: books() returns all listings that belong to this user.
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
     }
 
+    // NOTE: serviceRequests() returns all service requests that belong to this user.
     public function serviceRequests(): HasMany
     {
         return $this->hasMany(ServiceRequest::class);
@@ -64,9 +72,10 @@ class User extends Authenticatable
     /**
      * Centralized admin check so Blade/UI and middleware stay consistent.
      */
+    // NOTE: isAdmin() prefers the DB column, but keeps env/file fallback for older setups.
     public function isAdmin(): bool
     {
-        if (isset($this->is_admin) && (bool) $this->is_admin) {
+        if ((bool) ($this->is_admin ?? false)) {
             return true;
         }
 
@@ -84,5 +93,11 @@ class User extends Authenticatable
         }
 
         return in_array($email, SiteSettings::getAdminEmails(), true);
+    }
+
+    // NOTE: isDisabled() gives one shared way to check disabled status across the app.
+    public function isDisabled(): bool
+    {
+        return (bool) ($this->is_disabled ?? false);
     }
 }

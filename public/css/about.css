@@ -1,3 +1,5 @@
+/* Comments added to explain each main section and selector without changing any styling. */
+/* Theme variables / reusable colors, spacing, and shared values. */
 :root {
     --teal:       #2a9ec7;
     --teal-light: #93cfe2;
@@ -7,6 +9,7 @@
     --text-muted: #4C5B66;
 }
 
+/* Main wrapper for the about page content width and spacing. */
 .about-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -15,22 +18,26 @@
     color: var(--text-dark);
 }
 
+/* Top heading area for the page title and subtitle. */
 .page-header {
     text-align: center;
     margin-bottom: 70px;
 }
 
+/* Main title styling for the page header. */
 .page-header h1 {
     font-size: 42px;
     margin-bottom: 10px;
     color: var(--teal);
 }
 
+/* Small supporting text under the main title. */
 .subtitle {
     font-size: 18px;
     color: var(--text-muted);
 }
 
+/* Two-column section that holds the story text and icon summary boxes. */
 .about-story {
     display: flex;
     gap: 60px;
@@ -39,17 +46,20 @@
     flex-wrap: wrap;
 }
 
+/* Left text column for the story section. */
 .story-text {
     flex: 1;
     min-width: 300px;
 }
 
+/* Section heading inside the story text block. */
 .story-text h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: var(--teal);
 }
 
+/* Paragraph styling for story text content. */
 .story-text p {
     margin-bottom: 20px;
     color: var(--text-muted);
@@ -57,6 +67,7 @@
     font-size: 16px;
 }
 
+/* Call-to-action button that links users to the team page. */
 .team-button {
     display: inline-block;
     margin-top: 10px;
@@ -69,12 +80,14 @@
     transition: 0.3s ease;
 }
 
+/* Hover effect to make the team button feel interactive. */
 .team-button:hover {
     background: var(--yellow);
     color: var(--text-dark);
     transform: translateY(-3px);
 }
 
+/* Right column that stacks the icon boxes vertically. */
 .story-icons {
     flex: 1;
     display: flex;
@@ -83,6 +96,7 @@
     min-width: 280px;
 }
 
+/* Card-like row used to show one icon and one short point. */
 .icon-box {
     background: var(--white);
     padding: 25px;
@@ -94,15 +108,18 @@
     border-left: 5px solid var(--teal);
 }
 
+/* Icon styling inside each icon box. */
 .icon-box i {
     font-size: 22px;
     color: var(--teal);
 }
 
+/* Text next to the icon in each icon box. */
 .icon-box span {
     font-weight: 500;
 }
 
+/* Heading for the features section. */
 .features h2 {
     text-align: center;
     font-size: 30px;
@@ -110,12 +127,14 @@
     color: var(--teal);
 }
 
+/* Responsive grid that lays out all feature cards. */
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 35px;
 }
 
+/* Individual feature card styling. */
 .feature-card {
     background: var(--white);
     padding: 40px 30px;
@@ -126,22 +145,26 @@
     border-top: 4px solid var(--teal-light);
 }
 
+/* Lift and highlight effect when a feature card is hovered. */
 .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 45px rgba(0,0,0,0.1);
     border-top: 4px solid var(--yellow);
 }
 
+/* Feature icon styling. */
 .feature-card i {
     font-size: 26px;
     margin-bottom: 15px;
     color: var(--teal);
 }
 
+/* Feature title spacing. */
 .feature-card h3 {
     margin-bottom: 15px;
 }
 
+/* Feature description text styling. */
 .feature-card p {
     color: var(--text-muted);
     line-height: 1.6;

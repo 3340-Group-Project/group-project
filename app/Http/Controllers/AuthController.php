@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Controller methods usually validate input, query models, then return a view/redirect.
+
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -10,11 +13,13 @@ use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
+    // NOTE: showLogin() handles this route/action.
     public function showLogin()
     {
         return view('auth.login');
     }
 
+    // NOTE: login() handles this route/action.
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -32,11 +37,13 @@ class AuthController extends Controller
         return redirect()->intended(route('home'));
     }
 
+    // NOTE: showRegister() handles this route/action.
     public function showRegister()
     {
         return view('auth.register');
     }
 
+    // NOTE: register() handles this route/action.
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -68,6 +75,7 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+    // NOTE: logout() handles this route/action.
     public function logout(Request $request)
     {
         Auth::logout();

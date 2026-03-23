@@ -8,11 +8,13 @@ use App\Support\SiteSettings;
 
 class AppServiceProvider extends ServiceProvider
 {
+    // NOTE: register() handles this route/action.
     public function register(): void
     {
         //
     }
 
+    // NOTE: boot() handles this route/action.
     public function boot(): void
     {
         // Share theme globally; file-based so it works even before DB is finalized.

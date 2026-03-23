@@ -1,7 +1,10 @@
+<!-- php file showing user book listing information -->
+
 @extends('layouts.app')
 
 @section('title', $book->title)
 
+<!-- set the styling to books.css -->
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/books.css') }}" />
 @endsection
@@ -10,6 +13,7 @@
 <a href="{{ route('books.index') }}">&larr; Back</a>
 
 <div class="single-card">
+    <!-- retrieves image from book listing (contains fallback image if not found) -->
     @if($book->cover_image_path)
         <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Cover">
     @else
@@ -17,6 +21,7 @@
     @endif
     
     <div>
+        <!-- content about book listing -->
         <h1>{{ $book->title }}</h1>
         <p><strong>Price:</strong> ${{ $book->price_dollars }}</p>
         <p><strong>Course:</strong> {{ $book->course_code ?? '—' }}</p>
@@ -30,7 +35,7 @@
         <div class="admin-buttons">
         <a href="mailto:{{ $book->user->email }}">Email</a>
 
-        <!-- add if since phone is optional contact method -->
+        <!-- add conditional if since phone is optional contact method -->
         @if($book->user?->phone)
             <a href="tel:{{ $book->user->phone }}">Phone</a>
         @endif

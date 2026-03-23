@@ -1,3 +1,4 @@
+<!-- php file that will handle DB schema and migration for for settings information -->
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,10 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('key')->unique();
-            $table->string('value')->nullable();
-            $table->timestamps();
+            $table->id(); /* unique identifier for the setting record */
+            $table->string('key')->unique(); /* unique string key to identify the setting name */
+            $table->string('value')->nullable(); /* optional field to store the setting value or theme data */
+            $table->timestamps(); /* timestamps for when the setting was created or last updated */
         });
     }
 

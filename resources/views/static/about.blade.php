@@ -10,6 +10,7 @@
 @section('content')
 <div class="about-container">
 
+    <!-- main header for the page -->
     <section class="page-header">
         <h1>About CampusShelf</h1>
         <p class="subtitle">
@@ -17,31 +18,38 @@
         </p>
     </section>
 
+    <!-- intro section explaining why the site exists -->
     <section class="about-story">
         <div class="story-text">
             <h2>Why We Built This</h2>
+
+            <!-- quick background on the problem -->
             <p>
                 We’re University of Windsor students who were tired of scrolling through
                 endless group chats and random marketplace posts just to find a textbook.
                 Buying and selling books should be simple, organized, and student-focused.
             </p>
 
+            <!-- what campusshelf is trying to solve -->
             <p>
                 CampusShelf was created to make that process easier — a centralized,
                 campus-only platform where students can buy, sell, and share academic
                 resources without the noise.
             </p>
 
+            <!-- note about restricting access to uwindsor emails -->
             <p>
                 Every account requires a <strong>@uwindsor.ca</strong> email to keep the
                 platform safe, relevant, and built strictly for the UWindsor community.
             </p>
 
+            <!-- button to team page -->
             <a href="{{ url('/team') }}" class="team-button">
                 Meet the Team
             </a>
         </div>
 
+        <!-- small icon highlights to break up the page visually -->
         <div class="story-icons">
             <div class="icon-box">
                 <i class="fa-solid fa-book-open"></i>
@@ -60,7 +68,7 @@
         </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- features section showing what users can actually do -->
     <section class="features">
         <h2>What You Can Do</h2>
 
