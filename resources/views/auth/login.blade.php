@@ -47,10 +47,6 @@
                 @error('password')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
-
-                <label class="remember-me">
-                    <input type="checkbox" name="remember" value="1">Remember Me</input>
-                </label>
                 
                 <!-- only one button for login page since form is short -->
                 <button type="submit" class="userRegBtn">Login</button>

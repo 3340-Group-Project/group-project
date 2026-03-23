@@ -115,17 +115,6 @@ input[type="email"], input[type="password"], input[type="tel"], #regname {
     border-color: var(--text-muted);
 }
 
-/* Design for "remember me" button */
-.remember-me {
-    display: flex;
-    font-size: 0.85rem;
-    align-items: center;
-    margin: 1rem 0;
-    gap: 0.5rem;
-}
-
-.remember-me input[type="checkbox"] { width: auto; height: 1.25rem; margin: 0; }
-
 /* Mobile layout changes for small screens. */
 @media screen and (max-width: 600px) {
     main.container:has(#login-page), main.container:has(#signup-page) { 
