@@ -4,6 +4,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 @endsection
 
 @section('content')
@@ -15,7 +16,9 @@
         <!-- background shapes -->
         <div class="shape-mid"></div>
         <div class="shape-bottom"></div>
-        <div class="yellow-circle"></div>
+        <div class="yellow-circle">
+            <img src="{{ asset('images/CampusLogo.png') }}" alt="CampusShelf Logo" class="hero-logo-img">
+        </div>
 
         <div class="hero-content">
 
@@ -23,7 +26,9 @@
             <h1 class="hero-title">A better way to get<br>your textbooks</h1>
 
             <!-- mobile circle (only shows on smaller screens) -->
-            <div class="yellow-circle-mobile"></div>
+            <div class="yellow-circle-mobile">
+                <img src="{{ asset('images/CampusLogo.png') }}" alt="CampusShelf Logo" class="hero-logo-img">
+            </div>
 
             <!-- short description -->
             <p class="hero-subtitle">
@@ -34,7 +39,7 @@
             <!-- main buttons -->
             <div class="hero-buttons">
                 <!-- might link this to signup later -->
-                <a href="#" class="btn btn-solid">Get Started</a>
+                <a href="{{ route('books.index') }}" class="btn btn-solid">Get Started</a>
 
                 <!-- about page -->
                 <a href="{{ route('about') }}" class="btn btn-solid">About us</a>
@@ -64,11 +69,27 @@
             </div>
         </div>
 
-        <!-- placeholder cards (could show listings later) -->
+        <!-- feature cards explaining the platform -->
         <div class="cards-section">
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+
+            <div class="card">
+                <i class="fa-solid fa-book card-icon"></i>
+                <h3>Buy Textbooks</h3>
+                <p>Browse listings from other UWindsor students and find the books you need for your classes.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-tag card-icon"></i>
+                <h3>Sell Your Books</h3>
+                <p>Post your used textbooks in a few clicks and connect with students looking for them.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-list card-icon"></i>
+                <h3>Browse Listings</h3>
+                <p>Explore available textbooks and study materials posted by other UWindsor students.</p>
+            </div>
+
         </div>
 
     </section>

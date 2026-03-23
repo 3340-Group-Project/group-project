@@ -13,7 +13,8 @@
         <!-- Brand — shows on right in mobile, hidden in dropdown -->
         <li class="brand-item">
             <span class="home-link">
-                <img src="{{ asset('images/logo.svg') }}" class="logo" alt="logo" />
+                <!-- replaced svg with CampusLogo.png to match homepage branding -->
+                <img src="{{ asset('images/CampusLogo.png') }}" class="logo" alt="CampusShelf Logo" />
                 <span class="campus-shelf"><a class="nav-link" href="{{ route('home') }}">Campus Shelf</a></span>
             </span>
         </li>
