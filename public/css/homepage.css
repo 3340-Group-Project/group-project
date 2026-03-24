@@ -9,13 +9,15 @@
 /* Theme variables / reusable colors, spacing, and shared values. */
 :root {
     --yellow: #ffce04;
+    /* Do not redefine hero/theme variables here — use global theme variables from theme-default.css
+       Fallbacks below map to the shared variables so changing the theme file updates the homepage. */
 }
 
 /* Base page font, background, and text color using theme variables. */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Correct: Uses the variable first, falls back to hex if missing */
-    background-color: var(--hero-shape-bottom, #ffffff);
+    /* Use the shared background variable */
+    background-color: var(--bg-body, var(--bg-custom-body, #ffffff));
     color: var(--text-main, #000000);
 }
 
@@ -27,7 +29,8 @@ a {
 /* Hero section wrapper for the homepage top area. */
 .hero {
     position: relative;
-    background-color: var(--hero-bg, #2a9ec7);
+    /* prefer homepage-specific variable, otherwise fall back to the shared accent color */
+    background-color: var(--hero-bg, var(--accent-primary, #2a9ec7));
     overflow: hidden;
 }
 
@@ -43,19 +46,19 @@ a {
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--hero-shape-mid, #93cfe2);
+    /* fall back to a shared thumb/bg color if homepage-specific is not set */
+    background-color: var(--hero-shape-mid, var(--bg-thumb, #93cfe2));
     clip-path: polygon(0% 10%, 100% 55%, 100% 90%, 0% 65%);
     opacity: 0.7;
 }
 
-/* Update shape-bottom so it perfectly matches the new body color */
+/* Update shape-bottom so it perfectly matches the global body color */
 .shape-bottom {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    /* Correct: Uses the variable first, falls back to hex if missing */
-    background-color: var(--hero-shape-bottom, #ffffff);
+    background-color: var(--hero-shape-bottom, var(--bg-body, #ffffff));
     clip-path: polygon(0% 15%, 100% 85%, 100% 100%, 0% 100%);
 }
 
@@ -138,8 +141,8 @@ a {
 }
 
 .btn-solid {
-    background-color: var(--hero-btn, #2a9ec7);
-    color: #ffffff;
+    background-color: var(--hero-btn, var(--accent-primary, #2a9ec7));
+    color: var(--text-btn, #ffffff);
 }
 
 /* Feature bullets */
@@ -183,7 +186,8 @@ a {
 .card {
     flex: 1 1 250px;
     min-height: 200px;
-    background-color: var(--hero-card, #2a9ec7);
+    /* use the shared card/background variable */
+    background-color: var(--hero-card, var(--bg-card, #ffffff));
     border-radius: 16px;
     padding: 20px;
     display: flex;
@@ -191,7 +195,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-card, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* icon inside card */
@@ -238,7 +242,6 @@ a {
     .btn-solid { background-color: var(--hero-shape-mid, #93cfe2); padding: 16px 48px; font-size: 1.1rem; }
     .feature { justify-content: center; }
     .cards-section { flex-direction: column; padding: 24px 16px 40px; }
-    .card { width: 100%; height: 160px; }
     .shape-mid { clip-path: polygon(0% 10%, 100% 17%, 100% 90%, 0% 65%); }
     .shape-bottom { clip-path: polygon(0% 12%, 100% 25%, 100% 100%, 0% 100%); }
     .hero-buttons { flex-direction: row; justify-content: center; flex-wrap: wrap; margin-bottom: 0px; }

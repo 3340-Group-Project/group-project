@@ -1,12 +1,13 @@
 /* Comments added to explain each main section and selector without changing any styling. */
 /* Theme variables / reusable colors, spacing, and shared values. */
 :root {
-    --teal:       #2a9ec7;
-    --teal-light: #93cfe2;
-    --yellow:     #ffce04;
-    --white:      #ffffff;
-    --text-dark:  #000000;
-    --text-muted: #4C5B66;
+    /* map local tokens to the shared theme variables so changing the theme updates this page */
+    --teal:       var(--accent-primary, #2a9ec7);
+    --teal-light: var(--hero-shape-mid, #93cfe2);
+    --yellow:     var(--hero-btn, #ffce04);
+    --white:      var(--bg-card, #ffffff);
+    --text-dark:  var(--text-main, #102a43);
+    --text-muted: var(--text-muted, #486581);
 }
 
 /* Main wrapper for the about page content width and spacing. */

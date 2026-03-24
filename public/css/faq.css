@@ -1,8 +1,10 @@
-/* main container for faq page */
+/* main container for faq page - use global body background and text color */
 .faq-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 50px 20px;
+    background: transparent; /* page background is handled by layout/body */
+    color: var(--text-main, #102a43);
 }
 
 /* header at the top */
@@ -15,13 +17,13 @@
 .faq-header h1 {
     font-size: 2.2rem;
     margin-bottom: 10px;
-    color: #222;
+    color: var(--text-main, #102a43);
 }
 
 /* subtitle under title */
 .faq-header p {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-muted, #486581);
     margin: 0;
 }
 
@@ -34,11 +36,11 @@
 
 /* individual faq box */
 .faq-card {
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
+    background-color: var(--bg-card, #ffffff);
+    border: 1px solid var(--border-card, #e5e5e5);
     border-radius: 10px;
     padding: 22px 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-card, 0 2px 8px rgba(0, 0, 0, 0.04));
 }
 
 /* question text */
@@ -46,12 +48,12 @@
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 1.1rem;
-    color: #2c2c2c;
+    color: var(--text-main, #102a43);
 }
 
 /* answer text */
 .faq-card p {
     margin: 0;
     line-height: 1.6;
-    color: #555;
+    color: var(--text-muted, #486581);
 }
