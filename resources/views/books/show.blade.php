@@ -19,7 +19,7 @@
     @else
         <img src="{{ asset('images/book1.webp') }}" alt="Cover">
     @endif
-    
+
     <div>
         <!-- content about book listing -->
         <h1>{{ $book->title }}</h1>
@@ -40,6 +40,12 @@
             <a href="tel:{{ $book->user->phone }}">Phone</a>
         @endif
 </div>
+        <div style="margin-top:12px;">
+            <small class="placeholder">Need help with contacting sellers or viewing similar books? </small>
+            <a href="{{ route('wiki.contacting-sellers') }}">Contacting Sellers</a>
+            &nbsp;|&nbsp;
+            <a href="{{ route('wiki.browse-listings') }}">Browse Listings help</a>
+        </div>
     </div>
 </div>
 @endsection

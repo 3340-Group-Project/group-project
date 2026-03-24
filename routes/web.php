@@ -24,6 +24,18 @@ Route::view('/meet-team', 'static.meetteam')->name('meet-team');
 // FAQ static page
 Route::view('/faq', 'static.faq')->name('faq');
 
+// Wiki static section — show the overview page at /wiki
+Route::view('/wiki', 'wiki.pages.overview')->name('wiki.index');
+// Individual wiki article pages (so each article has its own URL)
+Route::view('/wiki/getting-started', 'wiki.pages.getting-started')->name('wiki.getting-started');
+Route::view('/wiki/posting-listings', 'wiki.pages.posting-listings')->name('wiki.posting-listings');
+Route::view('/wiki/safety-tips', 'wiki.pages.safety-tips')->name('wiki.safety-tips');
+Route::view('/wiki/admin-guide', 'wiki.pages.admin-guide')->name('wiki.admin-guide');
+// Additional help pages
+Route::view('/wiki/browse-listings', 'wiki.pages.browse-listings')->name('wiki.browse-listings');
+Route::view('/wiki/contacting-sellers', 'wiki.pages.contacting-sellers')->name('wiki.contacting-sellers');
+Route::view('/wiki/account-help', 'wiki.pages.account-help')->name('wiki.account-help');
+
 // Static contact page shown before the form is submitted.
 Route::view('/contact', 'static.contactus')->name('contact');
 
