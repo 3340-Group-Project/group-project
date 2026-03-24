@@ -22,7 +22,7 @@
         <li><a class="nav-link" href="{{ route('about') }}">About</a></li>
         <li><a class="nav-link" href="{{ route('meet-team') }}">Team</a></li>
         <li><a class="nav-link" href="{{ route('faq') }}">FAQ</a></li>
-        <li><a class="nav-link" href="/wiki">Wiki</a></li>
+        <li><a class="nav-link" href="{{ route('wiki.index') }}">Wiki</a></li>
         <li><a class="nav-link" href="{{ route('books.index') }}">Book Listings</a></li>
         <li><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
 
