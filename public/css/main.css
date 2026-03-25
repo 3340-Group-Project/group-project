@@ -5,3 +5,25 @@ html, body {
     padding: 0;
     background-color: var(--bg-custom-body, #d4ecf4); /* sets variable from themes*/
 }
+
+:root {
+    /* keep a sensible fallback for footer height if needed elsewhere */
+    --footer-min-height: 64px;
+}
+
+/* Make body a column flex container so footer can be pushed to the bottom when content is short */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* main content area should grow to fill available vertical space (standard sticky footer) */
+.site-content {
+    flex: 1 0 auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Footer styles moved to public/css/footer.css */
+/* See: public/css/footer.css */

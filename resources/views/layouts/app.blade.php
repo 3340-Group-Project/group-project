@@ -15,34 +15,33 @@
     <link rel="stylesheet" href="/css/theme-{{ $siteTheme ?? 'default' }}.css">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}"> <!-- footer styles -->
     @yield('styles')
 </head>
 <body @yield('body-attributes')>
     @include('navbar')
 
-    <!-- status check -->
-    @if(session('status'))
-        <div class="flash success">{{ session('status') }}</div>
-    @endif
-    <!-- error handling -->
-    @if($errors->any())
-        <div class="flash error">
-            <ul>
-                @foreach($errors->all() as $e)
-                    <li>{{ $e }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <main class="site-content" role="main">
+        <!-- status check -->
+        @if(session('status'))
+            <div class="flash success">{{ session('status') }}</div>
+        @endif
 
-    @yield('content')
+        <!-- error handling -->
+        @if($errors->any())
+            <div class="flash error">
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-<!-- footer for pages -->
-<footer class="footer">
-    <div class="container">
-        <small>© {{ date('Y') }} CampusShelf</small>
-    </div>
-</footer>
+        @yield('content')
+    </main>
+
+    @include('footer')
 @stack('scripts')
-</body>
+    {{-- Ensure CSS variable for footer and header heights is accurate at runtime so the content area reserves correct space. --}}
 </html>

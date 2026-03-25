@@ -10,7 +10,7 @@
     color: var(--text-nav, #ffffff);
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -100,13 +100,16 @@ nav ul li { margin: 0 0.5rem; }
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
+    /* fixed height to avoid layout shifts */
     height: 64px;
     line-height: 1.1;
 }
 
 .campus-shelf .nav-link {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: inline-block;
+    line-height: 1;
 }
 
 /* center home link vertically */
