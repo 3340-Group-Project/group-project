@@ -35,6 +35,7 @@ Route::view('/wiki/admin-guide', 'wiki.pages.admin-guide')->name('wiki.admin-gui
 Route::view('/wiki/browse-listings', 'wiki.pages.browse-listings')->name('wiki.browse-listings');
 Route::view('/wiki/contacting-sellers', 'wiki.pages.contacting-sellers')->name('wiki.contacting-sellers');
 Route::view('/wiki/account-help', 'wiki.pages.account-help')->name('wiki.account-help');
+Route::view('/wiki/video-guides', 'wiki.pages.video-guides')->name('wiki.video-guides');
 
 // Static contact page shown before the form is submitted.
 Route::view('/contact', 'static.contactus')->name('contact');
