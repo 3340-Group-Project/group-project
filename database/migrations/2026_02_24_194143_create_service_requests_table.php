@@ -11,16 +11,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('service_requests', function (Blueprint $table) {
-            $table->id(); /* unique identifier for the service request */
-            /** make user id the FK and delete requests if user is removed */
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('subject'); /* required field for the subject of the request */
-            $table->text('message'); /* required field for the detailed request message */
-            $table->string('attachment_path')->nullable(); /* optional field for a file attachment path */
-            $table->timestamps(); /* timestamps for when the request was submitted or updated */
-        });
+    {   
+        
+        if (!Schema::hasTable('service_requests')) {
+            Schema::create('service_requests', function (Blueprint $table) {
+                $table->id(); /* unique identifier for the service request */
+                /** make user id the FK and delete requests if user is removed */
+                $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                $table->string('subject'); /* required field for the subject of the request */
+                $table->text('message'); /* required field for the detailed request message */
+                $table->string('attachment_path')->nullable(); /* optional field for a file attachment path */
+                $table->timestamps(); /* timestamps for when the request was submitted or updated */
+            });
+        }
     }
 
     /**

@@ -13,17 +13,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id(); /* PK for user id */
-            $table->string('name'); /* required field for name of user */
-            $table->string('email')->unique(); /* required and unique email for each user */
-            $table->string('phone')->nullable()->unique(); /** optional and unique phone number for user */
-            $table->string('password'); /* required field for password */
-            // NOTE: keep role/disable flags on the user row so admin actions update immediately in the DB.
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_disabled')->default(false);
-            $table->timestamps(); /* timestamp for when user was created */
-        });
+        if (!Schema::hasTable('users')) {
+                Schema::create('users', function (Blueprint $table) {
+                $table->id(); /* PK for user id */
+                $table->string('name'); /* required field for name of user */
+                $table->string('email')->unique(); /* required and unique email for each user */
+                $table->string('phone')->nullable()->unique(); /** optional and unique phone number for user */
+                $table->string('password'); /* required field for password */
+                // NOTE: keep role/disable flags on the user row so admin actions update immediately in the DB.
+                $table->boolean('is_admin')->default(false);
+                $table->boolean('is_disabled')->default(false);
+                $table->timestamps(); /* timestamp for when user was created */
+            });
+        }
     }
 
     /**

@@ -11,13 +11,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id(); /* unique identifier for the setting record */
-            $table->string('key')->unique(); /* unique string key to identify the setting name */
-            $table->string('value')->nullable(); /* optional field to store the setting value or theme data */
-            $table->timestamps(); /* timestamps for when the setting was created or last updated */
-        });
+    {   
+        if (!Schema::hasTable('settings')) {
+            Schema::create('settings', function (Blueprint $table) {
+                $table->id(); /* unique identifier for the setting record */
+                $table->string('key')->unique(); /* unique string key to identify the setting name */
+                $table->string('value')->nullable(); /* optional field to store the setting value or theme data */
+                $table->timestamps(); /* timestamps for when the setting was created or last updated */
+            });
+        }
     }
 
     /**
