@@ -91,7 +91,7 @@
             </div>
         @endforeach
         </section>
-        <div style="display: flex; justify-content: center;">
+        <div class="pagination-container" style="margin-top: 2rem; width: 100%;">
             {{ $books->links() }}
         </div>
     @endif

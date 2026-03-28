@@ -107,6 +107,33 @@ a { text-decoration: none; transition: background-color 0.3s, color 0.3s; }
 .card img { width: 60%; object-fit: cover; }
 .card-content h2, .card-content p { margin: 1rem 0; text-align: left; }
 
+/* Shrint giant back/next arrows */
+.pagination-container svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Center the entire pagination block */
+.pagination-container nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Hide the redundant mobile "Previous / Next" text links */
+.pagination-container nav > div:first-child {
+    display: none; 
+}
+
+/* Align the page numbers */
+.pagination-container nav > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Single Book Detail Page */
 .single-card {
     box-shadow: var(--shadow-card);
