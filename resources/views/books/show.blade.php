@@ -15,9 +15,7 @@
 <div class="single-card">
     <!-- retrieves image from book listing (contains fallback image if not found) -->
     @if($book->cover_image_path)
-        <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Cover">
-    @else
-        <img src="{{ asset('images/book1.webp') }}" alt="Cover">
+        <img src="{{ $book->cover_image_url }}" alt="Cover">
     @endif
 
     <div>

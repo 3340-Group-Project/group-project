@@ -77,7 +77,7 @@
                     <!-- preview clickable card for each book listing -->
                     <div class="card">
                         @if($book->cover_image_path)
-                            <img src="{{ asset('storage/'.$book->cover_image_path) }}" alt="Book Cover"/>
+                            <img src="{{ $book->cover_image_url }}" alt="Book Cover"/>
                         @else
                             <img src="{{ asset('images/book' . (($loop->index % 6) + 1) . '.webp') }}" alt="Book Cover"/>
                         @endif
