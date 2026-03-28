@@ -91,6 +91,9 @@
             </div>
         @endforeach
         </section>
+        <div class="pagination-container" style="margin-top: 2rem; display: flex; justify-content: center;">
+            {{ $books->links() }}
+        </div>
     @endif
 </main>
 @endsection
