@@ -17,32 +17,41 @@
 <h1 class="listings-label">Admin - Book Listings</h1>
 </div>
 
-<!-- render through each of the book entries -->
-@foreach($books as $b)
-<!-- renders each book listing in grid format -->
-<div class="books-grid">
-    <div class="card">
-        <strong>{{ $b->title }}</strong> — ${{ $b->price_dollars }}
-        <div><small>Owner user_id: {{ $b->user_id }}</small></div>
-        <div class="row">
-            <!-- shows status of book listing --> 
-            <span class="badge">{{ $b->is_sold ? 'Sold' : 'Active' }}</span>
-        </div>
-        <div class="row">
-            <!-- POST method to update the status of listing -->
-            <form method="POST" action="{{ route('admin.books.toggleSold', $b) }}">
-                @csrf
-                <button type="submit">Toggle Sold</button>
-            </form>
-            <!-- POST method to delete the book listing -->
-            <form method="POST" action="{{ route('admin.books.destroy', $b) }}">
-                @csrf @method('DELETE')
-                <button type="submit" onclick="return confirm('Delete listing?')">Delete</button>
-            </form>
-        </div>
-    </div>
-@endforeach
-</div>
 
-{{ $books->links() }}
+@if($books->count() === 0)
+    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+        <p>No books found.</p>
+    </div>
+@else
+    <!-- renders each book listing in grid format -->
+    <div class="books-grid">
+        @foreach($books as $b)
+            <div>
+                <div class="card" style="flex-direction: column; align-items: flex-start;">
+                    <strong>{{ $b->title }}</strong> — ${{ $b->price_dollars }}
+                    <div><small>Owner user_id: {{ $b->user_id }}</small></div>
+                    
+                    <div class="row" style="margin-top: 1rem;">
+                        <span class="badge" style="font-weight: bold; color: var(--accent-primary);">
+                            Status: {{ $b->is_sold ? 'Sold' : 'Active' }}
+                        </span>
+                    </div>
+                    
+                    <div class="row" style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <form method="POST" action="{{ route('admin.books.toggleSold', $b) }}">
+                            @csrf
+                            <button class="admin-buttons" type="submit">Toggle Sold</button>
+                        </form>
+                        
+                        <form method="POST" action="{{ route('admin.books.destroy', $b) }}">
+                            @csrf @method('DELETE')
+                            <button class="admin-buttons" type="submit" onclick="return confirm('Delete listing?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    {{ $books->links() }}
+@endif
 @endsection

@@ -61,7 +61,7 @@ $format = trim((string) ($request->query('format') ?? $request->query('filter') 
         }
 
         // 7. Execute Pagination
-        $books = $q->latest()->paginate(12)->withQueryString(); // NOTE: keeps current filters in pagination links.
+        $books = $q->latest()->simplePaginate(12)->withQueryString(); // NOTE: keeps current filters in pagination links.
 
         return view('books.index', compact('books'));
     }

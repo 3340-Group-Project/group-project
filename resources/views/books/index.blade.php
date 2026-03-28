@@ -91,9 +91,7 @@
             </div>
         @endforeach
         </section>
-        <div class="pagination-container" style="margin-top: 2rem; width: 100%;">
-            {{ $books->links() }}
-        </div>
+        {{ $books->links() }}
     @endif
 </main>
 @endsection
