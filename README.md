@@ -1,6 +1,8 @@
-
-
 # Project Setup Instructions
+
+**NOTE**: To test website as an admin please sign in with the following credentials:
+username: ruedar@uwindsor.ca
+password: Happy1234
 
 ## Project overview
 This project is a Laravel 12 web application for a student marketplace / service platform. Based on the current code in this folder, the main features include:
