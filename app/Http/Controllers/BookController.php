@@ -39,7 +39,7 @@ class BookController extends Controller
 
         // 4. Format/Filter Logic (Handles both 'format' and 'filter' params)
                 // Accept format or filter (different front-end names).
-$format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
+        $format = trim((string) ($request->query('format') ?? $request->query('filter') ?? ''));
         if ($format !== '') {
             $q->where('format', $format);
         }
@@ -95,7 +95,8 @@ $format = trim((string) ($request->query('format') ?? $request->query('filter') 
         $book->user_id = Auth::id();
 
         if ($request->hasFile('cover_image')) {
-            $book->cover_image_path = $request->file('cover_image')->store('book_covers', 'public');
+            $path = $request->file('cover_image')->store('book_covers', 'public');
+            $book->cover_image_path = $path;
         }
 
         $book->save();
