@@ -95,7 +95,7 @@ class BookController extends Controller
         $book->user_id = Auth::id();
 
         if ($request->hasFile('cover_image')) {
-            $path = $request->file('cover_image')->store('book_covers', 'public');
+            $path = $request->file('cover_image')->store('book_covers', 'r2');
             $book->cover_image_path = $path;
         }
 
@@ -121,9 +121,9 @@ class BookController extends Controller
 
         if ($request->hasFile('cover_image')) {
             if ($book->cover_image_path) {
-                Storage::disk('public')->delete($book->cover_image_path);
+                Storage::disk('r2')->delete($book->cover_image_path);
             }
-            $book->cover_image_path = $request->file('cover_image')->store('book_covers', 'public');
+            $book->cover_image_path = $request->file('cover_image')->store('book_covers', 'r2');
         }
 
         $book->save();
@@ -147,7 +147,7 @@ class BookController extends Controller
         $this->authorizeOwner($book);
 
         if ($book->cover_image_path) {
-            Storage::disk('public')->delete($book->cover_image_path);
+            Storage::disk('r2')->delete($book->cover_image_path);
         }
 
         $book->delete();
